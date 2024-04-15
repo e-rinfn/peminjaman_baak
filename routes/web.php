@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PimpinanController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,10 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2,3']], function () {
 
 // untuk admin
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin', [AdminController::class, 'index']); // route index halaman admin
+    Route::get('/admin', [BarangController::class, 'index']); // route index barang
+    Route::get('/admin/create', [BarangController::class, 'create']); // route untuk menambahkan barang
+    Route::resource('barang', BarangController::class);
 });
 
 // untuk pimpinan

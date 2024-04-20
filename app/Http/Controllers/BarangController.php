@@ -15,12 +15,16 @@ class BarangController extends Controller
      */
 
 
-
-    public function index()
+    public function tampilBarangAdmin()
     {
-        $data = barang::orderBy("kode", "desc")->get();
-        return view('admin.index')->with('barang', $data);
+        $data = Barang::orderBy("kode_barang", "desc")->get();
+        return view('admin.daftar-barang')->with('barang', $data);
+    }
 
+    public function tampilBarangMahasiswa()
+    {
+        $data = Barang::orderBy("kode_barang", "desc")->get();
+        return view('mahasiswa.daftar-barang-mahasiswa')->with('barang', $data);
     }
 
     /**
@@ -36,25 +40,24 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('kode', $request->kode);
+        Session::flash('kode_barang', $request->kode_barang);
         Session::flash('nama_barang', $request->nama_barang);
 
 
         $request->validate([
-            'kode' => 'required|unique:barang|max:255|numeric',
+            'kode_barang' => 'required|unique:barang',
             'nama_barang' => 'required',
         ], [
-            'kode.unique' => 'Kode Sudah Ada, Masukkan Kode Lainnya',
-            'kode.required' => 'Kode Wajib Diisi',
-            'kode.numeric' => 'Kode Harus Berupa Angka',
+            'kode_barang.unique' => 'Kode Sudah Ada, Masukkan Lainnya',
+            'kode_barang.required' => 'Kode Barang Wajib Diisi',
             'nama_barang' => 'Nama Barang Wajib Diisi',
         ]);
         $data = [
-            'kode' => $request->kode,
+            'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
         ];
         Barang::create($data);
-        return redirect('admin')->with('success', 'Data Barang Berhasil Ditambah');
+        return redirect('daftar-barang')->with('success', 'Data Barang Berhasil Ditambah');
     }
 
     /**
@@ -70,8 +73,8 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        $data = barang::where('kode', $id)->first();
-        return view('admin.edit')->with('barang', $data);
+        $data = barang::where('kode_barang', $id)->first();
+        return view('admin.edit-barang')->with('barang', $data);
     }
 
     /**
@@ -87,8 +90,8 @@ class BarangController extends Controller
         $data = [
             'nama_barang' => $request->nama_barang,
         ];
-        Barang::where('kode', $id)->update($data);
-        return redirect('admin')->with('success', 'Data Barang Berhasil Di Edit');
+        Barang::where('kode_barang', $id)->update($data);
+        return redirect('/daftar-barang')->with('success', 'Data Barang Berhasil Di Edit');
     }
 
     /**
@@ -96,7 +99,7 @@ class BarangController extends Controller
      */
     public function destroy(string $id)
     {
-        Barang::where('kode', $id)->delete();
-        return redirect('admin')->with('success', 'Data Barang Berhasil Di Hapus');
+        Barang::where('kode_barang', $id)->delete();
+        return redirect('/daftar-barang')->with('success', 'Data Barang Berhasil Di Hapus');
     }
 }

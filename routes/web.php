@@ -25,9 +25,12 @@ Route::group(['middleware' => ['auth', 'checkrole:1,2,3']], function () {
 // untuk admin
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/admin', [AdminController::class, 'index']); // route index halaman admin
-    Route::get('/admin', [BarangController::class, 'index']); // route index barang
-    Route::get('/admin/create', [BarangController::class, 'create']); // route untuk menambahkan barang
-    Route::resource('barang', BarangController::class);
+    Route::get('/daftar-barang', [AdminController::class, 'daftarBarang']); // route untuk menuju halaman daftar barang
+    Route::get('/daftar-barang', [BarangController::class, 'tampilBarangAdmin']); // untuk tampilan barang 
+    Route::post('/daftar-barang', [BarangController::class, 'store']); // route tambah barang
+    Route::get('/daftar-barang/{id}/edit', [BarangController::class, 'edit']); // route edit barang
+    Route::put('/daftar-barang/{id}', [BarangController::class, 'update']); // route update barang
+    Route::delete('/daftar-barang/{id}', [BarangController::class, 'destroy']); // route delete barang
 });
 
 // untuk pimpinan
@@ -38,4 +41,7 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
 // untuk mahasiswa
 Route::group(['middleware' => ['auth', 'checkrole:3']], function () {
     Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+    Route::get('/daftar-barang-mahasiswa', [MahasiswaController::class, 'daftarBarang']);
+    Route::get('/daftar-barang-mahasiswa', [BarangController::class, 'tampilBarangMahasiswa']);
+    //Route::resource('barang', BarangController::class);
 });

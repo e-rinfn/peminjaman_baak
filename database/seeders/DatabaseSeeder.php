@@ -48,11 +48,35 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => 'Angga Ginasti',
+            'organisasi' => 'Pimpinan Angga',
+            'email' => 'angga@gmail.com',
+            'role_id' => 2,
+            'password' => bcrypt('angga')
+        ]);
+
+        User::create([
             'name' => 'Romi Syahriar',
             'organisasi' => 'Organisasi Romi',
             'email' => 'romi@gmail.com',
             'role_id' => 3,
             'password' => bcrypt('romirm')
+        ]);
+
+        User::create([
+            'name' => 'Erin Fajrin Nugraha',
+            'organisasi' => 'Organisasi Erin',
+            'email' => 'erinfajrin@gmail.com',
+            'role_id' => 3,
+            'password' => bcrypt('erinfajrin')
+        ]);
+
+        User::create([
+            'name' => 'Faisal Abdul Majid',
+            'organisasi' => 'Organisasi Faisal',
+            'email' => 'faisalabdul@gmail.com',
+            'role_id' => 3,
+            'password' => bcrypt('faisalabdul')
         ]);
     }
 }

@@ -10,4 +10,9 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
+
+    public function daftarBarang()
+    {
+        return view('admin.daftar-barang');
+    }
 }

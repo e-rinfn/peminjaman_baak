@@ -11,27 +11,27 @@
 @endsection
 
 
-{{-- sidebar admin --}}
-@section('sidebar')
+{{-- sidebar --}}
+@section('sidenav')
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Halaman Utama</div>
-                    <a class="nav-link" href="index.html">
+                    <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
+                    <a class="nav-link active bg-primary" href="#">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Barang Ruangan</div>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ url('/daftar-barang') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ url('daftar-ruangan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
-                    <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
+                    {{-- <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
                     <a class="nav-link" href="index.html">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
@@ -41,29 +41,29 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
-                    </a>
-                    <div class="sb-sidenav-menu-heading">Riwayat</div>
-                    <a class="nav-link" href="index.html">
+                    </a> --}}
+                    <div class="sb-sidenav-menu-heading">Laporan</div>
+                    <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
-                        Riwayat Peminjaman
+                        Laporan Peminjaman
                     </a>
                     <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ url('akun') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                         Kelola Akun
                     </a>
+                    <div class="d-flex justify-content-center mt-5">
+                        <form onsubmit="return confirm('Apakah anda yakin untuk keluar?')" action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-block btn-danger">KELUAR</button>
+                        </form>
+                    </div>
                 </div>
-
-            </div>
-            <div class="d-flex justify-content-center mb-5">
-                <form action="/logout" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-block btn-danger">KELUAR</button>
-                </form>
             </div>
         </nav>
     </div>
 @endsection
+
 
 
 {{-- konten admin --}}
@@ -134,93 +134,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- tombol untuk tambah data barang --}}
-            <div class="pb-3">
-                <a href="{{ url('admin/create') }}" class="btn btn-primary">Tambah Banyak Barang</a>
-            </div>
-
-            {{-- berhasil menambah data barang --}}
-            @if (Session::has('success'))
-                <div class="alert alert-success">
-                    {{ Session::get('success') }}
-                </div>
-            @endif
-
-            {{-- pesan error saat menambahkan data barang --}}
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <form action="{{ url('barang') }}" method="POST">
-                @csrf
-                <div class="my-3 p-3 bg-body rounded shadow-sm">
-                    <div class="mb-3 row">
-                        <label for="kode" class="col-sm-2 col-form-label">Kode Barang</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ Session::get('kode') }}" name="kode"
-                                id="kode">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ Session::get('nama_barang') }}"
-                                name="nama_barang" id="nama_barang">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nama_barang" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary" name="submit">Simpan Barang</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            {{-- bagian card dari halaman dashboard admin --}}
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Data Barang BAAK
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barang as $item)
-                                <tr>
-                                    <td>{{ $item->kode }}</td>
-                                    <td>{{ $item->nama_barang }}</td>
-                                    <td>
-                                        <a
-                                            href="{{ url('barang/' . $item->kode . '/edit') }}"class="btn btn-primary">Edit</a>
-                                        {{-- tombol delete barang --}}
-                                        <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data tersebut')"
-                                            class="d-inline" action="{{ url('barang/' . $item->kode) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </main>
     {{-- main admin end --}}

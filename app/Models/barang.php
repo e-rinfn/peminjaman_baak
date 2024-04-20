@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class barang extends Model
+class Barang extends Model
 {
     use HasFactory;
-    protected $fillable = ['kode', 'nama_barang'];
+    protected $fillable = ['kode_barang', 'nama_barang'];
     protected $table = 'barang';
     public $timestamps = false; // timestamps tidak dimasukkan
 }

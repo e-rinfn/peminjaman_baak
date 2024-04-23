@@ -20,4 +20,14 @@ class MahasiswaController extends Controller
         return view('mahasiswa.daftar-barang-mahasiswa')->with('barang', $data);
 
     }
+
+    public function tambahPinjamBarang()
+    {
+        return view('mahasiswa.tambah-pinjam-barang');
+    }
+
+    public function daftarPinjamBarangMahasiswa()
+    {
+        return view('mahasiswa.daftar-pinjam-barang-mahasiswa');
+    }
 }

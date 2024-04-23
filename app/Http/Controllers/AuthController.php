@@ -13,12 +13,12 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function dologin(Request $request)
+    public function dologin(Request $request) // fungsi untuk melakukan login
     {
-        // validasi
+        // validasi login
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => 'required|email', // validasi email
+            'password' => 'required' // validasi passowrd
         ]);
 
         if (auth()->attempt($credentials)) {
@@ -28,13 +28,13 @@ class AuthController extends Controller
 
             if (auth()->user()->role_id === 1) {
                 // jika user admin
-                return redirect()->intended('/admin');
+                return redirect()->intended('/admin'); // menuju ke halaman admin
             } elseif (auth()->user()->role_id === 2) {
                 // jika user pimpinan
-                return redirect()->intended('/pimpinan');
+                return redirect()->intended('/pimpinan'); // menuju ke halaman pimpinan
             } elseif (auth()->user()->role_id === 3) {
                 // jika user mahasiswa
-                return redirect()->intended('/mahasiswa');
+                return redirect()->intended('/mahasiswa'); // menuju ke halaman mahasiswa
             }
         }
 

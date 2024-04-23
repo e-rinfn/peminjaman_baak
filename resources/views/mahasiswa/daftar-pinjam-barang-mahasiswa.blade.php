@@ -13,7 +13,7 @@
                         Beranda Pengguna
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Barang Ruangan</div>
-                    <a class="nav-link active bg-primary" href="{{ url('/daftar-barang-mahasiswa') }}">
+                    <a class="nav-link" href="{{ url('/daftar-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
@@ -22,7 +22,7 @@
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="{{ url('/mahasiswa/tambah-pinjam-barang') }}">
+                    <a class="nav-link  active bg-primary" href="{{ url('/mahasiswa/tambah-pinjam-barang') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
@@ -72,17 +72,22 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Kode Barang</th>
+                                <th>ID</th>
                                 <th>Nama Barang</th>
+                                <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($barang as $item)
+                            @foreach ($pinjamBarang->where('email', Auth::user()->email) as $item)
                                 <tr>
-                                    <td>{{ $item->kode_barang }}</td>
+                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->nama_barang }}</td>
-                                    <td>Hahaha gak bisa edit dan hapus barang</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>
+                                        <a
+                                            href="{{ url('lihat-pinjam-barang-mahasiswa/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

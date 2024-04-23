@@ -71,7 +71,7 @@
     <main>
 
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Admin</h1>
+            <h1 class="mt-4">Selamat Datang Admin : <i> {{ Auth::user()->name }}</i></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -133,8 +133,40 @@
                         </div>
                     </div>
                 </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Data Barang BAAK
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama Barang</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pinjamBarang as $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->nama_barang }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>
+                                            <a
+                                                href="{{ url('lihat-pinjam-barang-admin/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
     </main>
     {{-- main admin end --}}
     </div>

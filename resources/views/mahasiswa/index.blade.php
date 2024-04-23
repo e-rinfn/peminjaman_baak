@@ -27,24 +27,24 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
-                    <a class="nav-link" href="{{ url('daftar-ruangan') }}">
+                    <a class="nav-link" href="{{ url('/daftar-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="{{ url('/mahasiswa/tambah-pinjam-barang') }}">
+                    <a class="nav-link" href="{{ url('/daftar-pinjam-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
                     </a>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ url('/daftar-pinjam-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
                     </a>
 
                     <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="{{ url('akun') }}">
+                    <a class="nav-link" href="{{ url('/akun') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                         Kelola Akun
                     </a>
@@ -67,7 +67,7 @@
     <main>
 
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Admin</h1>
+            <h1 class="mt-4">Selamat Datang Mahasiswa : <i> {{ Auth::user()->name }}</i></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>

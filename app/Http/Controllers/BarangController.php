@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\barang;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -73,7 +73,7 @@ class BarangController extends Controller
      */
     public function edit(string $id)
     {
-        $data = barang::where('kode_barang', $id)->first();
+        $data = Barang::where('kode_barang', $id)->first();
         return view('admin.edit-barang')->with('barang', $data);
     }
 

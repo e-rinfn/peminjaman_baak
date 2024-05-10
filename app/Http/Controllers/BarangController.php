@@ -27,6 +27,14 @@ class BarangController extends Controller
         return view('mahasiswa.daftar-barang-mahasiswa')->with('barang', $data);
     }
 
+    public function tambahPinjamBarang()
+    {
+        $barangs = Barang::all();
+        $tags = $barangs->pluck('nama')->toArray();
+        return view('mahasiswa.tambah-pinjam-barang', ['tags' => $tags]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

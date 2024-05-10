@@ -31,7 +31,7 @@
                         Daftar Barang
                     </a>
                     <a class="nav-link" href="{{ url('admin/daftar-ruangan') }}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"> </i></div>
                         Daftar Ruangan
                     </a>
                     {{-- <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
@@ -72,9 +72,8 @@
 @section('konten')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Halaman Daftar Barang BAAK</h1>
-
-
+            <h1 class="mt-4">HALAMAN DAFTAR BARANG</h1>
+            <hr>
 
             {{-- pesan berhasil menambah data barang --}}
             @if (Session::has('success'))
@@ -94,70 +93,75 @@
                 </div>
             @endif
 
-            <form action="{{ url('daftar-barang') }}" method="POST">
-                @csrf
-                <div class="my-3 p-3 bg-body rounded shadow-sm">
-                    <div class="mb-3 row">
-                        <label for="kode_barang" class="col-sm-2 col-form-label">Kode Barang</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ Session::get('kode_barang') }}"
-                                name="kode_barang" id="kode_barang">
-                        </div>
+            <div class="d-flex mb-5">
+                {{-- bagian card dari halaman dashboard admin --}}
+                <div class="container">
+                    <div class="card-header">
+                        <h3 align=center>Data Barang</h3>
+                        <hr>
                     </div>
-                    <div class="mb-3 row">
-                        <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ Session::get('nama_barang') }}"
-                                name="nama_barang" id="nama_barang">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nama_barang" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary" name="submit">Simpan Barang</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            {{-- bagian card dari halaman dashboard admin --}}
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    Data Barang BAAK
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($barang as $item)
+                    <div class="continer">
+                        <table id="datatablesSimple">
+                            <thead>
                                 <tr>
-                                    <td>{{ $item->kode_barang }}</td>
-                                    <td>{{ $item->nama_barang }}</td>
-                                    <td>
-                                        <a
-                                            href="{{ url('daftar-barang/' . $item->kode_barang . '/edit') }}"class="btn btn-primary">EDIT</a>
-                                        {{-- tombol delete barang --}}
-                                        <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data tersebut')"
-                                            class="d-inline" action="{{ url('barang/' . $item->kode_barang) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" name="submit" class="btn btn-danger">DELETE</button>
-                                        </form>
-                                    </td>
+                                    <th>Kode Barang</th>
+                                    <th>Nama Barang</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($barang as $item)
+                                    <tr>
+                                        <td>{{ $item->kode_barang }}</td>
+                                        <td>{{ $item->nama_barang }}</td>
 
+                                        <td>
+                                            <a
+                                                href="{{ url('daftar-barang/' . $item->kode_barang . '/edit') }}"class="btn btn-primary">EDIT</a>
+                                            {{-- tombol delete barang --}}
+                                            <form
+                                                onsubmit="return confirm('Apakah anda yakin ingin menghapus data tersebut')"
+                                                class="d-inline" action="{{ url('daftar-barang/' . $item->kode_barang) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" name="submit" class="btn btn-danger">DELETE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form action="{{ url('daftar-barang') }}" method="POST">
+                    @csrf
+                    <div class="p-3 bg-body rounded shadow-sm">
+                        <h3 align=center>Tambah Data Barang</h3>
+                        <hr>
+                        <div class="mb-3 row">
+                            <label for="kode_barang" class="col-form-label">Kode Barang</label>
+                            <div>
+                                <input type="text" class="form-control" value="{{ Session::get('kode_barang') }}"
+                                    name="kode_barang" id="kode_barang">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="nama_barang" class="col-form-label">Nama Barang</label>
+                            <div>
+                                <input type="text" class="form-control" value="{{ Session::get('nama_barang') }}"
+                                    name="nama_barang" id="nama_barang">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="nama_barang" class="col-form-label"></label>
+                            <div>
+                                <button type="submit" class="btn btn-primary" name="submit">Simpan Barang</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 @endsection

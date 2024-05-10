@@ -74,7 +74,7 @@
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
-                                <th>Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +82,7 @@
                                 <tr>
                                     <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang }}</td>
-                                    <td>Hahaha gak bisa edit dan hapus barang</td>
+
                                 </tr>
                             @endforeach
                         </tbody>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\PinjamBarang;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -23,11 +24,18 @@ class MahasiswaController extends Controller
 
     public function tambahPinjamBarang()
     {
-        return view('mahasiswa.tambah-pinjam-barang');
+        $data = Barang::all();
+        return view('mahasiswa.tambah-pinjam-barang', ['barang' => $data]);
     }
 
     public function daftarPinjamBarangMahasiswa()
     {
         return view('mahasiswa.daftar-pinjam-barang-mahasiswa');
+    }
+
+    public function daftarBentrokBarangMahasiswa()
+    {
+        $pinjamBarang = PinjamBarang::all();
+        return view('mahasiswa.index', ['pinjamBarang' => $pinjamBarang]);
     }
 }

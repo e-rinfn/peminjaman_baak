@@ -31,17 +31,7 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
-                    {{-- <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Barang
-                    </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Ruangan
-                    </a> --}}
+
                     <div class="sb-sidenav-menu-heading">Laporan</div>
                     <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
@@ -75,76 +65,70 @@
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
-
+            {{-- pesan berhasil menambah data barang --}}
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>TOTAL AKUN</b></div>
+                            <div class="col d-flex align-items-center"><b>Status Pending <br> (Barang)</b></div>
                             <div class="col d-flex justify-content-center bg-light">
-                                <h3>12</h3>
+                                {{-- <h3>{{ \App\Models\User::where('role_id', 3)->count() }}</h3> --}}
+                                <h3>{{ \App\Models\PinjamBarang::where('status', 'Pending')->count() }}</h3>
                             </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>PINJAM BARANG</b></div>
+                            <div class="col d-flex align-items-center"><b>Status Dipinjam <br> (Barang)</b></div>
                             <div class="col d-flex justify-content-center bg-light">
-                                <h3>23</h3>
+                                <h3>{{ \App\Models\PinjamBarang::where('status', 'Dipinjam')->count() }}</h3>
                             </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>PINJAM RUANGAN</b></div>
+                            <div class="col d-flex align-items-center"><b>Pinjam Ruangan</b></div>
                             <div class="col d-flex justify-content-center bg-light">
                                 <h3>12</h3>
                             </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>RIWAYAT PINJAM</b></div>
+                            <div class="col d-flex align-items-center"><b>Total Ruangan</b></div>
                             <div class="col d-flex justify-content-center bg-light">
-                                <h3>10</h3>
+                                <h3>12</h3>
                             </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Data Barang BAAK
+                        Data Pinjam Barang BAAK
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Organisasi</th>
                                     <th>Nama Barang</th>
-                                    <th>Email</th>
+                                    <th>Nama Peminjam</th>
+                                    <th>Tgl Pinjam</th>
+                                    <th>Tgl Kembali</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -152,11 +136,26 @@
                                 @foreach ($pinjamBarang as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->nama_barang }}</td>
-                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->organisasi }}</td>
+                                        <td>
+                                            @php
+                                                $values = json_decode($item->nama_barang);
+                                                sort($values);
+                                            @endphp
+                                            @foreach ($values as $value)
+                                                <span>{{ $value }}</span>
+                                                @if (!$loop->last)
+                                                    <span><br></span>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->tgl_pinjam)->format('d F Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->tgl_kembali)->format('d F Y') }}</td>
+                                        <td>{{ $item->status }}</td>
                                         <td>
                                             <a
-                                                href="{{ url('lihat-pinjam-barang-admin/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>
+                                                href="{{ url('lihat-pinjam-barang-admin/' . $item->id . '/edit') }}"class="btn btn-primary">Check</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -57,6 +57,12 @@
             <h1 class="mt-4">SELAMAT DATANG MAHASISWA</h1>
             <p>Email Anda: {{ Auth::user()->email }}</p>
 
+            {{-- pesan berhasil menambah data barang --}}
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             {{-- bagian card dari halaman dashboard admin --}}
             <div class="mb-3">
                 <a href="tambah-pinjam-barang"><button type="submit" class="btn btn-block btn-warning">Pinjam
@@ -74,7 +80,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
-                                <th>Email</th>
+                                <th>Tgl Pinjam</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -82,8 +89,22 @@
                             @foreach ($pinjamBarang->where('email', Auth::user()->email) as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama_barang }}</td>
-                                    <td>{{ $item->email }}</td>
+                                    <td>
+                                        @php
+                                            $values = json_decode($item->nama_barang);
+                                            sort($values);
+                                        @endphp
+                                        @foreach ($values as $value)
+                                            <span>{{ $value }}</span>
+                                            @if (!$loop->last)
+                                                <span>
+                                                    <hr>
+                                                </span>
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tgl_pinjam)->format('d F Y') }}</td>
+                                    <td>{{ $item->status }}</td>
                                     <td>
                                         <a
                                             href="{{ url('lihat-pinjam-barang-mahasiswa/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>

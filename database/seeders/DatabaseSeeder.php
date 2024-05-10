@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Darin Kamalia Basiti',
             'organisasi' => 'Pimpinan Darin',
             'email' => 'darinkb@gmail.com',
-            'role_id' => 2,
+            'role_id' => 1,
             'password' => bcrypt('darinkb')
         ]);
 

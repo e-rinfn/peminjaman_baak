@@ -21,7 +21,6 @@ class PinjamBarang extends Model
         'tgl_kembali',
         'alasan',
         'surat_peminjaman',
-        'surat_balasan',
         'status',
         'pesan_admin',
     ];

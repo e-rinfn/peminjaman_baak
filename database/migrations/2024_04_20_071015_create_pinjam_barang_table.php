@@ -21,9 +21,8 @@ return new class extends Migration {
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
             $table->string('alasan');
-            $table->string('surat_peminjaman');
-            $table->string('surat_balasan');
-            $table->string('status')->default('Pending');
+            $table->string('surat_peminjaman')->nullable();
+            $table->string('status');
             $table->string('pesan_admin');
         });
     }

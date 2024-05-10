@@ -19,8 +19,8 @@
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                            id="email">
+                        <input type="text" name="email" value="{{ old('email') }}"
+                            class="form-control @error('email') is-invalid @enderror" id="email">
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}

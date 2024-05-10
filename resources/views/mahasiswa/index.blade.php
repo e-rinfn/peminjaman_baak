@@ -67,68 +67,45 @@
     <main>
 
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Mahasiswa : <i> {{ Auth::user()->name }}</i></h1>
+            <h1 class="mt-4">Selamat Datang Mahasiswa : <br> <i> {{ Auth::user()->name }}</i></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
 
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-black mb-4">
-                        <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>TOTAL AKUN</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
-                                <h3>12</h3>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-black mb-4">
-                        <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>PINJAM BARANG</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
-                                <h3>23</h3>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-black mb-4">
-                        <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>PINJAM RUANGAN</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
-                                <h3>12</h3>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-black mb-4">
-                        <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>RIWAYAT PINJAM</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
-                                <h3>10</h3>
-                            </div>
-                        </div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">Lihat Detail</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
+            <h2>DAFTAR BENTROK BARANG</h2>
+
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Barang</th>
+                            <th>Status</th>
+                            <th>Pesan Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pinjamBarang->where('email', Auth::user()->email)->whereIn('status', ['Pending', 'Ditolak', 'Dipinjam']) as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>
+                                    @php
+                                        $values = json_decode($item->nama_barang);
+                                        sort($values);
+                                    @endphp
+                                    @foreach ($values as $value)
+                                        <span>{{ $value }}</span>
+                                        @if (!$loop->last)
+                                            <span>, <br></span>
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td>{{ $item->status }}</td>
+                                <td>{{ $item->pesan_admin }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>

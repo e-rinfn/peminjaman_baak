@@ -2,9 +2,12 @@
 
 @section('contents')
     <div class="d-flex justify-content-center align-items-center vh-100">
+
         <div class="card" style="width: 25rem;">
+
             <div class="card-header text-center">
-                Login
+                PEMINJAMAN BARANG DAN RUANGAN BAAK
+                <hr> LOGIN
             </div>
 
             @if (session()->has('error'))

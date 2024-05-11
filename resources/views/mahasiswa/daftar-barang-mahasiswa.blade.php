@@ -1,5 +1,20 @@
 @extends('mahasiswa.layoutMahasiswa.template')
 
+@section('title')
+    <title>P BAAK | Daftar Barang</title>
+@endsection
+
+@section('topNav')
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
+@endsection
+
+
 
 {{-- sidebar --}}
 @section('sidenav')
@@ -8,12 +23,12 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
-                    <a class="nav-link " href="#">
+                    <a class="nav-link " href="{{ url('mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Beranda Pengguna
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Barang Ruangan</div>
-                    <a class="nav-link active bg-primary" href="{{ url('/daftar-barang-mahasiswa') }}">
+                    <a class="nav-link active bg-primary" href="#">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
@@ -22,7 +37,7 @@
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="{{ url('/mahasiswa/tambah-pinjam-barang') }}">
+                    <a class="nav-link" href="{{ url('dartar-pinjam-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
@@ -54,9 +69,9 @@
 @section('konten')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">SELAMAT DATANG MAHASISWA</h1>
+            <h1 class="mt-4">DAFTAR BARANG BAAK</h1>
             <p>Email Anda: {{ Auth::user()->email }}</p>
-
+            <hr>
             {{-- bagian card dari halaman dashboard admin --}}
             <div class="mb-3">
                 <a href="tambah-pinjam-barang"><button type="submit" class="btn btn-block btn-warning">Pinjam

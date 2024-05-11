@@ -59,7 +59,7 @@
 @section('konten')
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">UBAH STATUS PEMINJAMAN BARANG</h1>
+        <h1 class="mt-4">INFORMASI PEMINJAMAN BARANG</h1>
         <hr>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -84,39 +84,44 @@
                     <div class="mb-3 row">
                         <label for="organisasi" class="col-form-label">Organisasi</label>
                         <div>
-                            <input type="text" class="form-control" value="{{ $pinjamBarang->organisasi }}"
-                                name="organisasi" id="organisasi" readonly>
+                            <div class="border form-control">
+                                {{ $pinjamBarang->organisasi }}
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="nim" class="col-sm-2 col-form-label">NIM</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" value="{{ $pinjamBarang->nim }}" name="nim"
-                                id="nim" readonly>
+                            <div class="border form-control">
+                                {{ $pinjamBarang->nim }}
+                            </div>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ $pinjamBarang->nama }}" name="nama"
-                                id="nama" readonly>
+                            <div class="border form-control">
+                                {{ $pinjamBarang->nama }}
+                            </div>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ $pinjamBarang->email }}" name="email"
-                                id="email" readonly>
+                            <div class="border form-control">
+                                {{ $pinjamBarang->email }}
+                            </div>
                         </div>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="no_hp" class="col-sm-3 col-form-label">No HP</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" value="{{ $pinjamBarang->no_hp }}" name="no_hp"
-                                id="no_hp" readonly>
+                            <div class="border form-control">
+                                {{ $pinjamBarang->no_hp }}
+                            </div>
                         </div>
                     </div>
 
@@ -142,17 +147,19 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="tgl_pinjam" class="col-sm-5 col-form-label">Tanggal Pinjam</label>
+                        <label for="tgl_pinjam" class="col-sm-5 col-form-label">Tgl Pinjam</label>
                         <div class="col-sm-7">
-                            <input type="date" class="form-control" value="{{ $pinjamBarang->tgl_pinjam }}"
-                                name="tgl_pinjam" id="tgl_pinjam" readonly>
+                            <div class="border form-control">
+                                {{ \Carbon\Carbon::parse($pinjamBarang->tgl_pinjam)->format('d F Y') }}
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="tgl_kembali" class="col-sm-5 col-form-label">Tanggal Kembali</label>
+                        <label for="tgl_kembali" class="col-sm-5 col-form-label">Tgl Kembali</label>
                         <div class="col-sm-7">
-                            <input type="date" class="form-control" value="{{ $pinjamBarang->tgl_kembali }}"
-                                name="tgl_kembali" id="tgl_kembali" readonly>
+                            <div class="border form-control">
+                                {{ \Carbon\Carbon::parse($pinjamBarang->tgl_kembali)->format('d F Y') }}
+                            </div>
                         </div>
                     </div>
 

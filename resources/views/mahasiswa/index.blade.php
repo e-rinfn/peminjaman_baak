@@ -67,13 +67,15 @@
     <main>
 
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Mahasiswa : <br> <i> {{ Auth::user()->name }}</i></h1>
+            <h1 class="mt-4">Selamat Datang : <br> <i> {{ Auth::user()->name }}</i></h1>
+            <p>Email Anda: {{ Auth::user()->email }}</p>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Beranda Pengguna</li>
             </ol>
+            <hr>
 
-            <h2>DAFTAR BENTROK BARANG</h2>
-
+            <h2>DAFTAR PENGAJUAN PINJAM BARANG</h2>
+            <hr>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>

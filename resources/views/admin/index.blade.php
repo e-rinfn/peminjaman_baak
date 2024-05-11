@@ -76,7 +76,7 @@
                     <div class="card bg-danger text-black mb-4">
                         <div class="card-body d-flex">
                             <div class="col d-flex align-items-center"><b>Status Pending <br> (Barang)</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
+                            <div class="col d-flex align-items-center justify-content-center bg-light">
                                 {{-- <h3>{{ \App\Models\User::where('role_id', 3)->count() }}</h3> --}}
                                 <h3>{{ \App\Models\PinjamBarang::where('status', 'Pending')->count() }}</h3>
                             </div>
@@ -87,7 +87,7 @@
                     <div class="card bg-warning text-black mb-4">
                         <div class="card-body d-flex">
                             <div class="col d-flex align-items-center"><b>Status Dipinjam <br> (Barang)</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
+                            <div class="col d-flex align-items-center justify-content-center bg-light">
                                 <h3>{{ \App\Models\PinjamBarang::where('status', 'Dipinjam')->count() }}</h3>
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>Pinjam Ruangan</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
+                            <div class="col d-flex align-items-center"><b>Status Pending <br>(Ruangan)</b></div>
+                            <div class="col d-flex align-items-center justify-content-center bg-light">
                                 <h3>12</h3>
                             </div>
                         </div>
@@ -106,8 +106,8 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-black mb-4">
                         <div class="card-body d-flex">
-                            <div class="col d-flex align-items-center"><b>Total Ruangan</b></div>
-                            <div class="col d-flex justify-content-center bg-light">
+                            <div class="col d-flex align-items-center"><b>Status Dipinjam <br>(Ruangan)</b></div>
+                            <div class="col d-flex align-items-center justify-content-center bg-light">
                                 <h3>12</h3>
                             </div>
                         </div>

@@ -30,17 +30,17 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
-                    <a class="nav-link" href="{{ url('daftar-ruangan') }}">
+                    <a class="nav-link" href="{{ url('/daftar-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link  active bg-primary" href="{{ url('/mahasiswa/tambah-pinjam-barang') }}">
+                    <a class="nav-link " href="{{ url('/daftar-pinjam-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
                     </a>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link  active bg-primary" href="index.html">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
@@ -67,7 +67,7 @@
 @section('konten')
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">FORM PINJAM BARANG</h1>
+        <h1 class="mt-4">FORM PINJAM RUANGAN</h1>
         <hr>
 
         @if ($errors->any())
@@ -80,12 +80,12 @@
             </div>
         @endif
         <div class="mb-3 ">
-            <label for="nama_barang" class="col-sm-2 col-form-label"></label>
+            <label for="nama_ruangan" class="col-sm-2 col-form-label"></label>
             <div>
                 <button onclick="history.back()" class="btn btn-warning">Kembali</button>
             </div>
         </div>
-        <form action="{{ url('tambah-pinjam-barang') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('tambah-pinjam-ruangan') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="my-3 p-3 bg-body rounded shadow-sm">
 
@@ -135,15 +135,15 @@
 
             <div class="my-3 p-3 bg-body rounded shadow-sm">
 
-                <h3 align=center>IDENTITAS BARANG</h3>
+                <h3 align=center>IDENTITAS RUANGAN</h3>
                 <hr>
                 <div class="mb-3 row">
-                    <label for="nama_barang" class="col-sm-2 col-form-label">Pilih Barang</label>
+                    <label for="nama_ruangan" class="col-sm-2 col-form-label">Pilih Ruangan</label>
                     <div class="col-sm-10">
-                        <select class="form-control select2-multi" name="nama_barang[]" id="nama_barang"
+                        <select class="form-control select2-multi" name="nama_ruangan[]" id="nama_ruangan"
                             multiple="multiple">
-                            @foreach ($barang as $item)
-                                <option value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
+                            @foreach ($ruangan as $item)
+                                <option value="{{ $item->nama_ruangan }}">{{ $item->nama_ruangan }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -210,7 +210,7 @@
 
             </div>
             <div class="mb-5 ">
-                <label for="nama_barang" class="col-sm-2 col-form-label"></label>
+                <label for="nama_ruangan" class="col-sm-2 col-form-label"></label>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary" name="submit">Ajukan Peminjaman</button>
                 </div>

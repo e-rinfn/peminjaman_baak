@@ -74,40 +74,52 @@
             </ol>
             <hr>
 
-            <h2>DAFTAR PENGAJUAN PINJAM BARANG</h2>
+            <h2>Prosedur</h2>
             <hr>
             <div class="card-body">
-                <table id="datatablesSimple">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama Barang</th>
-                            <th>Status</th>
-                            <th>Pesan Admin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($pinjamBarang->where('email', Auth::user()->email)->whereIn('status', ['Pending', 'Ditolak', 'Dipinjam']) as $item)
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>
-                                    @php
-                                        $values = json_decode($item->nama_barang);
-                                        sort($values);
-                                    @endphp
-                                    @foreach ($values as $value)
-                                        <span>{{ $value }}</span>
-                                        @if (!$loop->last)
-                                            <span>, <br></span>
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>{{ $item->status }}</td>
-                                <td>{{ $item->pesan_admin }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <p>Prosedur Pengajuan Permohonan Penggunaan Fasilitas</p>
+                <ol>
+                    <li> Panitia mengajukan surat permohonan penggunaan fasilitas berupa ruang,
+                        peralatan, atau fasilitas lainnya kepada Wakil Rektor Bidang Kemahasiswaan dengan diketahui oleh
+                        Kabag
+                        Kemahasiswaan.</li>
+                    <li>Wakil Rektor Bidang Kemahasiswaan memutuskan fasilitas kampus yang
+                        dapat digunakan setelah mendengarkan kebutuhan penggunaan fasilitas
+                        dari panitia dan berkoordinasi dengan bagian Urusan Dalam BAUM.</li>
+                    <li>Wakil Rektor Bidang Kemahasiswaan mendisposisikan surat permohonan
+                        panita untuk ditindak-lanjuti oleh Bagian Urusan Dalam BAUM.</li>
+                    <li>Panitia berkoordinasi dengan Bagian Urusan Dalam BAUM dan Kabag
+                        Kemahasiswaan mengenai pelaksanaan penggunaan fasilitas.</li>
+                    <li>Panitia merapikan dan mengembalikan fasilitas yang telah digunakan kepada
+                        Bagian Urusan Dalam BAUM sesuai dengan peminjaman fasilitas dan tidak
+                        merusaknya.</li>
+                </ol>
+
+                <div class="card-body">
+                    <p>Prosedur Pengajuan Surat Permohonan dan Proposal Penyelenggaraan
+                        Kegiatan</p>
+                    <ol>
+                        <li>Panitia mengajukan surat penyelenggaraan kegiatan kepada Wakil
+                            Rektor Bidang Kemahasiswaan yang ditandatangani oleh Ketua Panitia
+                            setelah diperiksa dan disetujui oleh Ketua HMJ/UKM/BEM/Kepala
+                            Jurusan/Kepala Bagian Kemahasiswaan (untuk selanjutnya disingkat Kabag
+                            Kemahasiswaan). Contoh surat lihat lampiran.</li>
+                        <li>Surat permohonan dan proposal penyelenggaraan kegiatan harus diajukan
+                            paling lambat 7 hari kerja sebelum pelaksanaan kegiatan. Surat permohonan
+                            yang diajukan kurang dari 7 hari kerja tidak akan diproses.</li>
+                        <li>Dalam surat permohonan penyelenggaraan kegiatan harus
+                            mencantumkan nama kegiatan, biaya yang dibutuhkan dan waktu
+                            penyelenggaraan kegiatan.</li>
+                        <li>Wakil Rektor Bidang Kemahasiswaan menyetujui/tidak menyetujui
+                            penyeleng-araan kegiatansetelah mengadakan dialog dengan panitia
+                            kegiatan.</li>
+                        <li>Panitia melaksanakan kegiatan, atau membatalkan kegiatan jika tidak
+                            mendapat persetujuan dari Pimpinan Universitas Perjuangan. Informasi
+                            persetujuan/ pembatalan penyelenggaraan kegiatan disampaikan kepada
+                            panitia pada 3 hari kerja setelah pengajuan surat permohonan dan proposal
+                            kegiatan.</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </main>

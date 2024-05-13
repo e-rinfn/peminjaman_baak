@@ -32,51 +32,51 @@ class DatabaseSeeder extends Seeder
         // Menambahkan User
 
         User::create([
-            'name' => 'Erin Fajrin Nugraha',
-            'email' => 'erinfn@gmail.com',
+            'name' => 'Admin 1',
+            'email' => 'adminbaak@gmail.com',
             'organisasi' => 'ADMIN',
             'role_id' => 1,
-            'password' => bcrypt('erinfn')
+            'password' => bcrypt('admin')
         ]);
 
         User::create([
-            'name' => 'Darin Kamalia Basiti',
-            'organisasi' => 'Pimpinan Darin',
-            'email' => 'darinkb@gmail.com',
+            'name' => 'Pimpinan 1',
+            'organisasi' => 'Pimpinan 1',
+            'email' => 'pimpinan1@gmail.com',
             'role_id' => 1,
-            'password' => bcrypt('darinkb')
+            'password' => bcrypt('pimpinan1')
         ]);
 
         User::create([
-            'name' => 'Angga Ginasti',
-            'organisasi' => 'Pimpinan Angga',
-            'email' => 'angga@gmail.com',
+            'name' => 'Pimpinan 2',
+            'organisasi' => 'Pimpinan 2',
+            'email' => 'pimpinan2@gmail.com',
             'role_id' => 2,
-            'password' => bcrypt('angga')
+            'password' => bcrypt('pimpinan2')
         ]);
 
         User::create([
-            'name' => 'Romi Syahriar',
-            'organisasi' => 'Organisasi Romi',
-            'email' => 'romi@gmail.com',
+            'name' => 'Robotika UNPER',
+            'organisasi' => 'UKM Robotika',
+            'email' => 'robotikaunper@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('romirm')
+            'password' => bcrypt('robotika')
         ]);
 
         User::create([
-            'name' => 'Erin Fajrin Nugraha',
-            'organisasi' => 'Organisasi Erin',
-            'email' => 'erinfajrin@gmail.com',
+            'name' => 'Basket UNPER',
+            'organisasi' => 'UKM Basket',
+            'email' => 'basketunper@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('erinfajrin')
+            'password' => bcrypt('volly')
         ]);
 
         User::create([
-            'name' => 'Faisal Abdul Majid',
-            'organisasi' => 'Organisasi Faisal',
-            'email' => 'faisalabdul@gmail.com',
+            'name' => 'Volly UNPER',
+            'organisasi' => 'UKM Volly',
+            'email' => 'vollyunper@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('faisalabdul')
+            'password' => bcrypt('volly')
         ]);
     }
 }

@@ -11,8 +11,15 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+    // Menampilkan daftar barang admin
     public function daftarBarang()
     {
         return view('admin.daftar-barang');
+    }
+
+    // Menampilkan daftar ruangan admin
+    public function daftarRuangan()
+    {
+        return view('admin.daftar-ruangan');
     }
 }

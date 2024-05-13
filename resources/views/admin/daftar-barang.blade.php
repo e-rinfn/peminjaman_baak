@@ -30,7 +30,7 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
-                    <a class="nav-link" href="{{ url('admin/daftar-ruangan') }}">
+                    <a class="nav-link" href="{{ url('daftar-ruangan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"> </i></div>
                         Daftar Ruangan
                     </a>
@@ -46,12 +46,12 @@
                         Pinjam Ruangan
                     </a> --}}
                     <div class="sb-sidenav-menu-heading">Laporan</div>
-                    <a class="nav-link" href="{{ url('admin/laporan') }}">
+                    <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
                         Laporan Peminjaman
                     </a>
                     <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="{{ url('admin/akun') }}">
+                    <a class="nav-link" href="{{ url('akun') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                         Kelola Akun
                     </a>

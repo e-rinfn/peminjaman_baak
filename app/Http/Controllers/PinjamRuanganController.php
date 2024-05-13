@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PinjamBarang;
 use Illuminate\Http\Request;
+use App\Models\PinjamRuangan;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
-class PinjamBarangController extends Controller
+class PinjamRuanganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,8 +31,8 @@ class PinjamBarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_barang' => 'required|array|min:1', // Memastikan 'nama_barang' merupakan array dengan minimal 1 item
-            'nama_barang.*' => 'required', // Memastikan setiap nilai dalam 'nama_barang' tidak boleh kosong
+            'nama_ruangan' => 'required|array|min:1', // Memastikan 'nama_barang' merupakan array dengan minimal 1 item
+            'nama_ruangan.*' => 'required', // Memastikan setiap nilai dalam 'nama_barang' tidak boleh kosong
             'nim' => 'required',
             'nama' => 'required',
             'email' => 'required',
@@ -44,9 +44,10 @@ class PinjamBarangController extends Controller
             //'surat_balasan' => '',
 
         ], [
-            'nama_barang.required' => 'Nama Barang Wajib Diisi',
-            'nama.required' => 'Nama Wajib Diisi',
-            'organisasi.required' => 'Organisasi Wajib Diisi',
+            'nama_ruangan.required' => 'Nama Ruangan Wajib Diisi',
+            'nama.required' => 'Nama Peminjam Wajib Diisi',
+            'no_hp.required' => 'Nomor HP Wajib Diisi',
+
         ]);
 
         $data = [
@@ -55,7 +56,7 @@ class PinjamBarangController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'nama_barang' => json_encode($request->nama_barang), // Mengubah array menjadi string
+            'nama_ruangan' => json_encode($request->nama_ruangan), // Mengubah array menjadi string
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
             'alasan' => $request->alasan,
@@ -65,35 +66,35 @@ class PinjamBarangController extends Controller
             'pesan_admin' => $request->pesan_admin,
         ];
 
-        PinjamBarang::create($data);
-        return redirect('/daftar-pinjam-barang-mahasiswa')->with('success', 'Pinjam Barang Berhasil Ditambah');
+        PinjamRuangan::create($data);
+        return redirect('/daftar-pinjam-ruangan-mahasiswa')->with('success', 'Pinjam Ruangan Berhasil Ditambah');
     }
 
 
-    public function tampilPinjamBarangMahasiswa()
+    public function tampilPinjamRuanganMahasiswa()
     {
-        $pinjamBarang = PinjamBarang::where('email', Auth::user()->email)->get();
-        return view('mahasiswa.daftar-pinjam-barang-mahasiswa', ['pinjamBarang' => $pinjamBarang]);
+        $pinjamRuangan = PinjamRuangan::where('email', Auth::user()->email)->get();
+        return view('mahasiswa.daftar-pinjam-ruangan-mahasiswa', ['pinjamRuangan' => $pinjamRuangan]);
     }
 
-    public function lihatPinjamBarangMahasiswa(string $id)
+    public function lihatPinjamRuanganMahasiswa(string $id)
     {
-        $data = PinjamBarang::where('id', $id)->first();
-        return view('mahasiswa.lihat-pinjam-barang-mahasiswa')->with('pinjamBarang', $data);
-
-    }
-
-    public function lihatPinjamBarangAdmin(string $id)
-    {
-        $data = PinjamBarang::where('id', $id)->first();
-        return view('admin.lihat-pinjam-barang-admin')->with('pinjamBarang', $data);
+        $data = PinjamRuangan::where('id', $id)->first();
+        return view('mahasiswa.lihat-pinjam-ruangan-mahasiswa')->with('pinjamRuangan', $data);
 
     }
 
-    public function tampilPinjamBarang()
+    public function lihatPinjamRuanganAdmin(string $id)
     {
-        $data = PinjamBarang::orderBy("id", "desc")->get();
-        return view('admin.pinjam-barang')->with('pinjamBarang', $data);
+        $data = PinjamRuangan::where('id', $id)->first();
+        return view('admin.lihat-pinjam-ruangan-admin')->with('pinjamRuangan', $data);
+
+    }
+
+    public function tampilPinjamRuangan()
+    {
+        $data = PinjamRuangan::orderBy("id", "desc")->get();
+        return view('admin.pinjam-ruangan')->with('pinjamRuangan', $data);
     }
 
     /**
@@ -129,8 +130,8 @@ class PinjamBarangController extends Controller
             'status' => $request->status,
             'pesan_admin' => $request->pesan_admin,
         ];
-        PinjamBarang::where('id', $id)->update($data);
-        return redirect('/pinjam-barang')->with('success', 'Data Peminjaman Barang Berhasil Di Update');
+        PinjamRuangan::where('id', $id)->update($data);
+        return redirect('/pinjam-ruangan')->with('success', 'Data Peminjaman Ruangan Berhasil Di Update');
     }
 
     /**

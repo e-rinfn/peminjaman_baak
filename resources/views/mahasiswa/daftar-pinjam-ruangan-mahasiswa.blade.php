@@ -1,7 +1,7 @@
 @extends('mahasiswa.layoutMahasiswa.template')
 
 @section('title')
-    <title>P BAAK | Daftar Barang</title>
+    <title>P BAAK | Daftar Pinjam Ruangan</title>
 @endsection
 
 @section('topNav')
@@ -21,7 +21,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
-                    <a class="nav-link " href={{ url('mahasiswa') }}>
+                    <a class="nav-link " href="{{ url('mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Beranda Pengguna
                     </a>
@@ -35,12 +35,12 @@
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link  active bg-primary" href="{{ url('daftar-pinjam-barang-mahasiswa') }}">
+                    <a class="nav-link" href="{{ url('daftar-pinjam-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
                     </a>
-                    <a class="nav-link" href="{{ url('daftar-pinjam-ruangan-mahasiswa') }}">
+                    <a class="nav-link   active bg-primary" href="{{ url('daftar-pinjam-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
@@ -78,13 +78,13 @@
             @endif
             {{-- bagian card dari halaman dashboard admin --}}
             <div class="mb-3">
-                <a href="tambah-pinjam-barang"><button type="submit" class="btn btn-block btn-warning">Pinjam
-                        Barang</button></a>
+                <a href="tambah-pinjam-ruangan"><button type="submit" class="btn btn-block btn-warning">Pinjam
+                        Ruangan</button></a>
             </div>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Data Pinjam Barang BAAK
+                    Data Pengajuan Pinjam Ruangan BAAK
                 </div>
 
                 <div class="card-body">
@@ -92,19 +92,19 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Barang</th>
+                                <th>Nama Ruangan</th>
                                 <th>Tgl Pinjam</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pinjamBarang->where('email', Auth::user()->email) as $item)
+                            @foreach ($pinjamRuangan->where('email', Auth::user()->email) as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>
                                         @php
-                                            $values = json_decode($item->nama_barang);
+                                            $values = json_decode($item->nama_ruangan);
                                             sort($values);
                                         @endphp
                                         @foreach ($values as $value)
@@ -118,7 +118,7 @@
                                     <td>{{ $item->status }}</td>
                                     <td>
                                         <a
-                                            href="{{ url('lihat-pinjam-barang-mahasiswa/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>
+                                            href="{{ url('lihat-pinjam-ruangan-mahasiswa/' . $item->id . '/edit') }}"class="btn btn-primary">Lihat</a>
                                     </td>
                                 </tr>
                             @endforeach

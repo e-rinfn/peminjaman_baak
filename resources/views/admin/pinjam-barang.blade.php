@@ -116,12 +116,63 @@
                 <hr>
                 <div class="d-flex justify-content-center">
                     <div class="mb-3 p-3">
-                        <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-primary">Pinjam
+                        <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-secondary">Pinjam
                                 Barang</button></a>
                     </div>
                     <div class="mb-3 p-3">
                         <a href="pinjam-ruangan"><button type="submit" class="btn btn-block btn-primary">Pinjam
                                 Ruangan</button></a>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 align=center>Daftar Pinjam Barang</h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Organisasi</th>
+                                    <th>Nama Barang</th>
+                                    <th>Nama Peminjam</th>
+                                    <th>Tgl Pinjam</th>
+                                    <th>Tgl Kembali</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pinjamBarang->filter(function ($item) {
+            return $item->status === 'Dipinjam' || $item->status === 'Pending';
+        }) as $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->organisasi }}</td>
+                                        <td>
+                                            @php
+                                                $values = json_decode($item->nama_barang);
+                                                sort($values);
+                                            @endphp
+                                            @foreach ($values as $value)
+                                                <span>{{ $value }}</span>
+                                                @if (!$loop->last)
+                                                    <span><br></span>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->tgl_pinjam)->format('d F Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->tgl_kembali)->format('d F Y') }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>
+                                            <a
+                                                href="{{ url('lihat-pinjam-barang-admin/' . $item->id . '/edit') }}"class="btn btn-primary">Check</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

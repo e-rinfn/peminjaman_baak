@@ -28,21 +28,21 @@
                         Beranda Pengguna
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Barang Ruangan</div>
-                    <a class="nav-link active bg-primary" href="#">
+                    <a class="nav-link active bg-primary" href="{{ url('daftar-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                         Daftar Barang
                     </a>
-                    <a class="nav-link" href="{{ url('daftar-ruangan') }}">
+                    <a class="nav-link" href="{{ url('daftar-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
                     <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="{{ url('dartar-pinjam-barang-mahasiswa') }}">
+                    <a class="nav-link" href="{{ url('daftar-pinjam-barang-mahasiswa') }}">
                         <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Barang
                     </a>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ url('daftar-pinjam-ruangan-mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan

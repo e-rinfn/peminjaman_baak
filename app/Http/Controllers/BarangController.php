@@ -29,8 +29,8 @@ class BarangController extends Controller
 
     public function tambahPinjamBarang()
     {
-        $barangs = Barang::all();
-        $tags = $barangs->pluck('nama')->toArray();
+        $barang = Barang::all();
+        $tags = $barang->pluck('nama')->toArray();
         return view('mahasiswa.tambah-pinjam-barang', ['tags' => $tags]);
     }
 
@@ -48,21 +48,30 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+
+
         Session::flash('kode_barang', $request->kode_barang);
         Session::flash('nama_barang', $request->nama_barang);
+        Session::flash('gambar', $request->nama_barang);
+
 
 
         $request->validate([
             'kode_barang' => 'required|unique:barang',
             'nama_barang' => 'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
             'kode_barang.unique' => 'Kode Sudah Ada, Masukkan Lainnya',
             'kode_barang.required' => 'Kode Barang Wajib Diisi',
             'nama_barang' => 'Nama Barang Wajib Diisi',
         ]);
+
+
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
+            'gambar' => $request->file('gambar')->store('images'),
+
         ];
         Barang::create($data);
         return redirect('daftar-barang')->with('success', 'Data Barang Berhasil Ditambah');
@@ -91,12 +100,17 @@ class BarangController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'kode_barang' => 'required',
             'nama_barang' => 'required',
+
         ], [
+            'kode_barang' => 'Kode Barang Wajib Diisi',
             'nama_barang' => 'Nama Barang Wajib Diisi',
         ]);
         $data = [
+            'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
+            'gambar' => $request->file('gambar')->store('images'),
         ];
         Barang::where('kode_barang', $id)->update($data);
         return redirect('/daftar-barang')->with('success', 'Data Barang Berhasil Di Edit');

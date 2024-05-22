@@ -169,6 +169,14 @@
                             {{ $pinjamBarang->alasan }}
                         </div>
                     </div>
+                    {{-- gambar bukti barang kembali --}}
+                    <div class="mb-3 row">
+                        <label for="alasan" class=" col-form-label">Bukti Barang Kembali</label>
+                        <a href="{{ asset('storage/' . $pinjamBarang->gambar_kembali) }}">
+                            <img class="border p-2 d-flex justify-center"
+                                src="{{ asset('storage/' . $pinjamBarang->gambar_kembali) }}" width="200">
+                        </a>
+                    </div>
                     <div class="mb-3 row" hidden>
                         <label for="surat_peminjaman" class="col-sm-2 col-form-label">Surat Peminjaman</label>
                         <div class="col-sm-10">

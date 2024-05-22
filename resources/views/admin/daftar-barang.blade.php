@@ -104,17 +104,26 @@
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
+                                    <th>Gambar Barang</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $no = 1; @endphp
                                 @foreach ($barang as $item)
                                     <tr>
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $item->kode_barang }}</td>
                                         <td>{{ $item->nama_barang }}</td>
-
+                                        <td><a href="{{ asset('storage/' . $item->gambar) }}">
+                                                <img class="border p-2 d-flex justify-center"
+                                                    src="{{ asset('storage/' . $item->gambar) }}"
+                                                    alt="{{ $item->nama_barang }}" width="200">
+                                            </a>
+                                        </td>
                                         <td>
                                             <a
                                                 href="{{ url('daftar-barang/' . $item->kode_barang . '/edit') }}"class="btn btn-primary">EDIT</a>
@@ -134,7 +143,7 @@
                         </table>
                     </div>
                 </div>
-                <form action="{{ url('daftar-barang') }}" method="POST">
+                <form action="{{ url('daftar-barang') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="p-3 bg-body rounded shadow-sm">
                         <h3 align=center>Tambah Data Barang</h3>
@@ -152,6 +161,16 @@
                                 <input type="text" class="form-control" value="{{ Session::get('nama_barang') }}"
                                     name="nama_barang" id="nama_barang">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gambar">Gambar</label>
+                            <input type="file" class="form-control @error('gambar') is-invalid @enderror"
+                                value="{{ Session::get('gambar') }}" name="gambar" id="gambar">
+                            @error('gambar')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3 row">
                             <label for="nama_barang" class="col-form-label"></label>

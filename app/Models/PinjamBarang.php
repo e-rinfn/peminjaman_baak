@@ -20,6 +20,7 @@ class PinjamBarang extends Model
         'tgl_pinjam',
         'tgl_kembali',
         'alasan',
+        'gambar_kembali',
         'surat_peminjaman',
         'status',
         'pesan_admin',

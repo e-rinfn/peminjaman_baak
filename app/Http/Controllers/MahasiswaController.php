@@ -45,10 +45,4 @@ class MahasiswaController extends Controller
     {
         return view('mahasiswa.daftar-pinjam-ruangan-mahasiswa');
     }
-
-    public function daftarBentrokBarangMahasiswa()
-    {
-        $pinjamBarang = PinjamBarang::all();
-        return view('mahasiswa.index', ['pinjamBarang' => $pinjamBarang]);
-    }
 }

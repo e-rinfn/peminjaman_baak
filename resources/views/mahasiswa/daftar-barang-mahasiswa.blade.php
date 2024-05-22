@@ -74,7 +74,8 @@
             <hr>
             {{-- bagian card dari halaman dashboard admin --}}
             <div class="mb-3">
-                <a href="tambah-pinjam-barang"><button type="submit" class="btn btn-block btn-warning">Pinjam
+                <a href="tambah-pinjam-barang" target="_blank"><button type="submit"
+                        class="btn btn-block btn-warning">Pinjam
                         Barang</button></a>
             </div>
             <div class="card mb-4">
@@ -87,16 +88,21 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Kode Barang</th>
-                                <th>Nama Barang</th>
 
+                                <th>Nama Barang</th>
+                                <th>Gambar</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($barang as $item)
                                 <tr>
-                                    <td>{{ $item->kode_barang }}</td>
                                     <td>{{ $item->nama_barang }}</td>
+                                    <td><a href="{{ asset('storage/' . $item->gambar) }}">
+                                            <img class="border p-2 d-flex justify-center"
+                                                src="{{ asset('storage/' . $item->gambar) }}"
+                                                alt="{{ $item->nama_barang }}" width="200">
+                                        </a>
+                                    </td>
 
                                 </tr>
                             @endforeach

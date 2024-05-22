@@ -84,16 +84,17 @@
                 </div>
             @endif
 
-            <form action="{{ url('daftar-barang/' . $barang->kode_barang) }}" method="POST">
+            <form action="{{ url('daftar-barang/' . $barang->kode_barang) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
 
                 @csrf
                 <a href="{{ url('/daftar-barang') }}" class="btn btn-warning">Kembali</a>
                 <div class="my-3 p-3 bg-body rounded shadow-sm">
                     <div class="mb-3 row">
-                        <label for="kode" class="col-sm-2 col-form-label">Kode Barang</label>
+                        <label for="kode_barang" class="col-sm-2 col-form-label">Kode Barang</label>
                         <div class="col-sm-10">
-                            {{ $barang->kode_barang }}
+                            <input type="text" class="form-control" value="{{ $barang->kode_barang }}" name="kode_barang"
+                                id="kode_barang">
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -102,6 +103,17 @@
                             <input type="text" class="form-control" value="{{ $barang->nama_barang }}" name="nama_barang"
                                 id="nama_barang">
                         </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="gambar">Gambar</label>
+                        <input type="file" class="form-control @error('gambar') is-invalid @enderror"
+                            value="{{ Session::get('gambar') }}" name="gambar" id="gambar">
+                        @error('gambar')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="mb-3 row">
                         <label for="nama_barang" class="col-sm-2 col-form-label"></label>

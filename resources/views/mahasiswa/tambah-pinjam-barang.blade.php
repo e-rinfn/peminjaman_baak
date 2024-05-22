@@ -173,6 +173,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="mb-3 row">
                     <label for="surat_peminjaman" class="col-sm-2 col-form-label">Surat Peminjaman</label>
                     <div class="col-sm-10">
@@ -186,6 +188,9 @@
                         @enderror
                     </div>
                 </div>
+
+
+
             </div>
 
             <div class="my-3 p-3 bg-body rounded shadow-sm" hidden>

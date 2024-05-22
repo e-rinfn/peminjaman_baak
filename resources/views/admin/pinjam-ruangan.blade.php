@@ -158,14 +158,24 @@
                                             @foreach ($values as $value)
                                                 <span>{{ $value }}</span>
                                                 @if (!$loop->last)
-                                                    <span><br></span>
+                                                    <span>,<br></span>
                                                 @endif
                                             @endforeach
                                         </td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->tgl_pinjam)->format('d F Y') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->tgl_kembali)->format('d F Y') }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>
+                                            @if ($item->status == 'Pending')
+                                                <div class="btn btn-warning">{{ $item->status }}</div>
+                                            @elseif($item->status == 'Dipinjam')
+                                                <div class="btn btn-success">{{ $item->status }}</div>
+                                            @elseif($item->status == 'Ditolak')
+                                                <div class="btn btn-danger">{{ $item->status }}</div>
+                                            @else
+                                                <div class="btn btn-primary">{{ $item->status }}</div>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a
                                                 href="{{ url('lihat-pinjam-ruangan-admin/' . $item->id . '/edit') }}"class="btn btn-primary">Check</a>

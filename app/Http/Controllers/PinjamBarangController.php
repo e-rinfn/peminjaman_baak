@@ -41,7 +41,6 @@ class PinjamBarangController extends Controller
             'tgl_kembali' => 'required',
             'alasan' => 'required',
             'surat_peminjaman' => 'required|mimes:pdf|max:4096',
-            //'surat_balasan' => '',
 
         ], [
             'nama_barang.required' => 'Nama Barang Wajib Diisi',
@@ -59,6 +58,7 @@ class PinjamBarangController extends Controller
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
             'alasan' => $request->alasan,
+
             'surat_peminjaman' => $request->file('surat_peminjaman')->store('uploads'), // Simpan file surat peminjaman
             // 'surat_balasan' => $request->file('surat_balasan')->store('uploads'), // Simpan file surat balasan
             'status' => $request->status,
@@ -96,6 +96,29 @@ class PinjamBarangController extends Controller
         return view('admin.pinjam-barang')->with('pinjamBarang', $data);
     }
 
+    public function laporanPinjamBarang()
+    {
+        $data = PinjamBarang::orderBy("id", "desc")->get();
+        return view('admin.laporan')->with('pinjamBarang', $data);
+    }
+
+    public function filterByDate(Request $request)
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        $pinjamBarang = PinjamBarang::whereBetween('tgl_pinjam', [$start_date, $end_date])->get();
+
+        return view('admin.laporan', compact('pinjamBarang'));
+    }
+
+    public function resetFilter()
+    {
+        $pinjamBarang = PinjamBarang::all();
+
+        return view('admin.laporan', compact('pinjamBarang'));
+    }
+
     /**
      * Display the specified resource.
      */
@@ -128,9 +151,22 @@ class PinjamBarangController extends Controller
             //'surat_balasan' => $request->surat_balasan,
             'status' => $request->status,
             'pesan_admin' => $request->pesan_admin,
+
+        ];
+        PinjamBarang::create($data);
+        return redirect('/pinjam-barang')->with('success', 'Data Peminjaman Barang Berhasil Di Update');
+    }
+
+    public function updateMahasiswa(Request $request, string $id)
+    {
+        $request->validate([
+            'gambar_kembali' => ''
+        ]);
+        $data = [
+            'gambar_kembali' => $request->file('gambar_kembali')->store('images'),
         ];
         PinjamBarang::where('id', $id)->update($data);
-        return redirect('/pinjam-barang')->with('success', 'Data Peminjaman Barang Berhasil Di Update');
+        return redirect('/daftar-pinjam-barang-mahasiswa')->with('success', 'Data Peminjaman Barang Berhasil Di Update');
     }
 
     /**

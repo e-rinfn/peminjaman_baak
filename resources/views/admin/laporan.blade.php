@@ -68,30 +68,18 @@
             {{-- pesan berhasil menambah data barang --}}
 
             <hr>
-            <div class="d-flex justify-content-center">
-                <div class="mb-3 p-3">
-                    <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
-                            Barang</button></a>
-                </div>
-                <div class="mb-3 p-3">
-                    <a href="pinjam-ruangan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
-                            Ruangan</button></a>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h3 align=center>Laporan Peminjaman Barang</h3>
-                </div>
+            <div class="d-flex justify-content-between">
                 <form action="{{ route('filter.by.date') }}" method="GET" class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="start_date">Start Date</label>
-                            <input type="date" name="start_date" class="form-control" required>
+                            <label for="start_date">Tanggal Awal <i>(Bulan/Tanggal/Tahun)</i></label>
+                            <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}"
+                                required>
                         </div>
                         <div class="col">
-                            <label for="end_date">End Date</label>
-                            <input type="date" name="end_date" class="form-control" required>
+                            <label for="end_date">Tanggal Akhir <i>(Bulan/Tanggal/Tahun)</i></label>
+                            <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}"
+                                required>
                         </div>
                         <div class="col d-flex align-items-end">
                             <button type="submit" class="btn btn-primary me-2">Filter</button>
@@ -99,6 +87,24 @@
                         </div>
                     </div>
                 </form>
+
+                <div class="mb-3 p-3">
+                    <div class="mt-2">
+                        <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
+                                Barang</button></a>
+                    </div>
+                    <div class="mt-2">
+                        <a href="pinjam-ruangan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
+                                Ruangan</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 align=center>Laporan Peminjaman Barang</h3>
+                </div>
+
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>

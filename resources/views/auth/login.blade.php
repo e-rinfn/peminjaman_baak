@@ -3,11 +3,20 @@
 @section('contents')
     <div class="d-flex justify-content-center align-items-center vh-100">
 
-        <div class="card" style="width: 25rem;">
+        <div class="card card-header" style="width: 25rem;">
 
-            <div class="card-header text-center">
-                PEMINJAMAN BARANG DAN RUANGAN BAAK
-                <hr> LOGIN
+            <img class="pt-2" src="https://unper.ac.id/wp-content/uploads/2022/12/Logo-UNPER-Abbr.png" alt="">
+            <hr>
+            <div class="p-3 ">
+                <h3> SISTEM INFORMASI <br>
+                    PEMINJAMAN BARANG <br>
+                    DAN RUANGAN BAAK</h3>
+            </div>
+            <div class="text-center">
+
+                <hr>
+                <h4>LOGIN</h4>
+                <hr>
             </div>
 
             @if (session()->has('error'))
@@ -16,7 +25,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-
             <div class="card-body">
                 <form method="post" action="/">
                     @csrf

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\PinjamBarang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,6 +110,10 @@ class PinjamBarangController extends Controller
 
         $pinjamBarang = PinjamBarang::whereBetween('tgl_pinjam', [$start_date, $end_date])->get();
 
+        // Ubah format tanggal sebelum mengirimkan ke view
+        $start_date = Carbon::createFromFormat('Y-m-d', $start_date)->format('d/m/Y');
+        $end_date = Carbon::createFromFormat('Y-m-d', $end_date)->format('d/m/Y');
+
         return view('admin.laporan', compact('pinjamBarang'));
     }
 
@@ -153,7 +158,7 @@ class PinjamBarangController extends Controller
             'pesan_admin' => $request->pesan_admin,
 
         ];
-        PinjamBarang::create($data);
+        PinjamBarang::where('id', $id)->update($data);
         return redirect('/pinjam-barang')->with('success', 'Data Peminjaman Barang Berhasil Di Update');
     }
 

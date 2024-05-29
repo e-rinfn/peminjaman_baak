@@ -10,12 +10,12 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PinjamBarangController;
 use App\Http\Controllers\PinjamRuanganController;
+use App\Http\Controllers\RegistrasiController;
 
 //  jika user belum login
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AuthController::class, 'login'])->name('login'); // fungsi login
     Route::post('/', [AuthController::class, 'dologin']);
-
 });
 
 // untuk superadmin dan pegawai
@@ -55,11 +55,33 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () { // jika ro
 
 
     // Laporan
+
+    // Laporan Barang
     Route::get('/laporan', [AdminController::class, 'laporanPeminjaman']);
     Route::get('/laporan', [PinjamBarangController::class, 'laporanPinjamBarang']);
 
+    // Filter Halaman Laporan Peminjaman Barang
     Route::get('/filter-by-date', [PinjamBarangController::class, 'filterByDate'])->name('filter.by.date');
     Route::get('/reset-filter', [PinjamBarangController::class, 'resetFilter'])->name('reset.filter');
+
+    // Laporan ruangan
+    Route::get('/laporan-ruangan', [AdminController::class, 'laporanPeminjamanRuangan']);
+    Route::get('/laporan-ruangan', [PinjamRuanganController::class, 'laporanPinjamRuangan']);
+
+    // Filter Halaman Laporan Peminjaman Barang
+    Route::get('/filter-by-date-ruangan', [PinjamRuanganController::class, 'filterByDate']);
+    Route::get('/reset-filter-ruangan', [PinjamRuanganController::class, 'resetFilter']);
+
+
+    // Akun
+    Route::get('/akun', [AdminController::class, 'akun']); // menampilkan halaman akun
+    Route::get('/akun', [AuthController::class, 'tampilUserAdmin']); // menampilkan daftar pengguna 
+    Route::post('/akun', [AuthController::class, 'register']); // tambah pengguna
+
+    Route::get('/akun', [AuthController::class, 'tampilUserAdmin']);
+    Route::get('/edit-akun/{id}', [AuthController::class, 'editUser']); // menuju ke halaman edit akun 
+    Route::put('/edit-akun/{id}', [AuthController::class, 'updateUser']); // ubah akun pengguna
+    Route::delete('/akun/{id}', [AuthController::class, 'deleteUser']); // hapus akun pengguna
 
 });
 

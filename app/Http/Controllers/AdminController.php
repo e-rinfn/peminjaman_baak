@@ -27,4 +27,14 @@ class AdminController extends Controller
     {
         return view('admin.laporan');
     }
+
+    public function laporanPeminjamanRuangan()
+    {
+        return view('admin.laporan-ruangan');
+    }
+    
+    public function akun()
+    {
+        return view('admin.akun');
+    }
 }

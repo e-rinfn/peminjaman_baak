@@ -1,17 +1,7 @@
 @extends('mahasiswa.layoutMahasiswa.template')
 
 @section('title')
-    <title>P BAAK | Daftar Barang</title>
-@endsection
-
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+    <title>P BAAK | Daftar Pinjam Barang</title>
 @endsection
 
 {{-- sidebar --}}
@@ -44,12 +34,6 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
-                    </a>
-
-                    <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="{{ url('akun') }}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                        Kelola Akun
                     </a>
                     <div class="d-flex justify-content-center mt-5">
                         <form onsubmit="return confirm('Apakah anda yakin untuk keluar?')" action="/logout" method="post">

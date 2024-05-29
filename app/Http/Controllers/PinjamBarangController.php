@@ -47,6 +47,7 @@ class PinjamBarangController extends Controller
             'nama_barang.required' => 'Nama Barang Wajib Diisi',
             'nama.required' => 'Nama Wajib Diisi',
             'organisasi.required' => 'Organisasi Wajib Diisi',
+            'surat_peminjaman' => 'Surat Peminjaman Wajib Diisi, Dan Harus berformat PDF'
         ]);
 
         $data = [
@@ -97,6 +98,7 @@ class PinjamBarangController extends Controller
         return view('admin.pinjam-barang')->with('pinjamBarang', $data);
     }
 
+    // Laporan Pinjam Barang
     public function laporanPinjamBarang()
     {
         $data = PinjamBarang::orderBy("id", "desc")->get();
@@ -120,9 +122,10 @@ class PinjamBarangController extends Controller
     public function resetFilter()
     {
         $pinjamBarang = PinjamBarang::all();
-
         return view('admin.laporan', compact('pinjamBarang'));
     }
+
+
 
     /**
      * Display the specified resource.

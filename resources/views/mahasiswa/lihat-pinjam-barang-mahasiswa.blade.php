@@ -1,13 +1,51 @@
 @extends('mahasiswa.layoutMahasiswa.template')
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-    </nav>
+@section('title')
+    <title>P BAAK | Lihat Peminjaman Barang</title>
 @endsection
 
+{{-- sidebar --}}
+@section('sidenav')
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
+                    <a class="nav-link " href={{ url('mahasiswa') }}>
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                        Beranda Pengguna
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Daftar Barang Ruangan</div>
+                    <a class="nav-link" href="{{ url('daftar-barang-mahasiswa') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
+                        Daftar Barang
+                    </a>
+                    <a class="nav-link" href="{{ url('daftar-ruangan-mahasiswa') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                        Daftar Ruangan
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
+                    <a class="nav-link  active bg-primary" href="{{ url('daftar-pinjam-barang-mahasiswa') }}">
+                        <div class="sb-nav-link-icon "><i class="fa-solid fa-box"></i> | <i
+                                class="fa-solid fa-handshake"></i></div>
+                        Pinjam Barang
+                    </a>
+                    <a class="nav-link" href="{{ url('daftar-pinjam-ruangan-mahasiswa') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
+                                class="fa-solid fa-handshake"></i></div>
+                        Pinjam Ruangan
+                    </a>
+                    <div class="d-flex justify-content-center mt-5">
+                        <form onsubmit="return confirm('Apakah anda yakin untuk keluar?')" action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-block btn-danger">KELUAR</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+@endsection
 
 @section('konten')
     <div class="container-fluid px-4">
@@ -158,29 +196,19 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="form-group">
-                    <label for="gambar_kembali">Upload Bukti Barang Kembali</label>
-                    <input type="file" class="form-control @error('gambar_kembali') is-invalid @enderror"
-                        value="{{ Session::get('gambar_kembali') }}" name="gambar_kembali" id="gambar_kembali">
-                    @error('gambar_kembali')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div> --}}
 
+            {{-- Fitur Upload Foto Bukti Pengembalian --}}
             <div class="mb-3 row">
                 <label for="alasan" class=" col-form-label">Bukti Barang Kembali</label>
                 <a href="{{ asset('storage/' . $pinjamBarang->gambar_kembali) }}">
                     <img class="border p-2 d-flex justify-center"
-                        src="{{ asset('storage/' . $pinjamBarang->gambar_kembali) }}" width="400">
+                        src="{{ asset('storage/' . $pinjamBarang->gambar_kembali) }}" width="250">
                 </a>
             </div>
             <hr>
             <form action="{{ url('lihat-pinjam-barang-mahasiswa/' . $pinjamBarang->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @method('PUT')
-
                 @csrf
                 <div class="mb-3 row">
                     <label for="gambar_kembali" class="col-sm-2 col-form-label">Upload Gambar Bukti Barang Kembali <br>

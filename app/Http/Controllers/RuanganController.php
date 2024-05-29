@@ -92,11 +92,14 @@ class RuanganController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'kode_ruangan' => 'required',
             'nama_ruangan' => 'required',
         ], [
+            'kode_ruangan' => 'Kode Ruangan Wajib Diisi',
             'nama_ruangan' => 'Nama Ruangan Wajib Diisi',
         ]);
         $data = [
+            'kode_ruangan' => $request->kode_ruangan,
             'nama_ruangan' => $request->nama_ruangan,
         ];
         Ruangan::where('kode_ruangan', $id)->update($data);

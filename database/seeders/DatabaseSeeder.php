@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         // Menambahkan User
 
         User::create([
-            'name' => 'Admin 1',
-            'email' => 'adminbaak@gmail.com',
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
             'organisasi' => 'ADMIN',
             'role_id' => 1,
             'password' => bcrypt('admin')
@@ -56,27 +56,27 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Robotika UNPER',
-            'organisasi' => 'UKM Robotika',
-            'email' => 'robotikaunper@gmail.com',
+            'name' => 'Ketua UKM ABC',
+            'organisasi' => 'UKM ABC UNPER',
+            'email' => 'ukmabc@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('robotika')
+            'password' => bcrypt('ukmabc')
         ]);
 
         User::create([
-            'name' => 'Basket UNPER',
-            'organisasi' => 'UKM Basket',
-            'email' => 'basketunper@gmail.com',
+            'name' => 'Ketua UKM XYZ',
+            'organisasi' => 'UKM XYZ UNPER',
+            'email' => 'ukmxyz@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('volly')
+            'password' => bcrypt('ukmxyz')
         ]);
 
         User::create([
-            'name' => 'Volly UNPER',
-            'organisasi' => 'UKM Volly',
-            'email' => 'vollyunper@gmail.com',
+            'name' => 'Ketua UKM RTX',
+            'organisasi' => 'UKM RTX UNPER',
+            'email' => 'rtx@gmail.com',
             'role_id' => 3,
-            'password' => bcrypt('volly')
+            'password' => bcrypt('ukmrtx')
         ]);
     }
 }

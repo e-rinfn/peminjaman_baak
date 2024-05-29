@@ -1,15 +1,8 @@
 @extends('admin.layoutAdmin.template')
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+@section('title')
+    <title>P BAAK | Laporan Peminjaman Barang</title>
 @endsection
-
 
 {{-- sidebar --}}
 @section('sidenav')
@@ -56,17 +49,14 @@
 
 
 
-{{-- konten admin --}}
+{{-- Konten Admin --}}
 @section('konten')
     <main>
-
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Admin : <i> {{ Auth::user()->name }}</i></h1>
+            <h1 class="mt-4">Selamat Datang : {{ Auth::user()->name }}</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Laporan</li>
             </ol>
-            {{-- pesan berhasil menambah data barang --}}
-
             <hr>
             <div class="d-flex justify-content-between">
                 <form action="{{ route('filter.by.date') }}" method="GET" class="mb-3">
@@ -87,24 +77,23 @@
                         </div>
                     </div>
                 </form>
-
                 <div class="mb-3 p-3">
                     <div class="mt-2">
-                        <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
+                        <a href="laporan"><button type="submit" class="btn btn-block btn-secondary">Laporan Pinjam
                                 Barang</button></a>
                     </div>
                     <div class="mt-2">
-                        <a href="pinjam-ruangan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
+                        <a href="laporan-ruangan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
                                 Ruangan</button></a>
                     </div>
                 </div>
             </div>
 
+            {{-- Tabel Laoporan Peminjaman --}}
             <div class="card mb-4">
                 <div class="card-header">
                     <h3 align=center>Laporan Peminjaman Barang</h3>
                 </div>
-
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -161,8 +150,6 @@
             </div>
         </div>
         </div>
-
     </main>
-    {{-- main admin end --}}
     </div>
 @endsection

@@ -1,17 +1,11 @@
 @extends('admin.layoutAdmin.template')
 
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+@section('title')
+    <title>P BAAK | Pinjam Ruangan</title>
 @endsection
 
-{{-- sidebar --}}
+{{-- Sidebar --}}
 @section('sidenav')
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -31,7 +25,6 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                         Daftar Ruangan
                     </a>
-
                     <div class="sb-sidenav-menu-heading">Laporan</div>
                     <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
@@ -55,10 +48,8 @@
 @endsection
 
 
-
 @section('konten')
     <div class="container-fluid px-4">
-
         <h1 class="mt-4">INFORMASI PEMINJAMAN RUANGAN</h1>
         <hr>
         @if ($errors->any())
@@ -71,14 +62,12 @@
             </div>
         @endif
 
-
+        {{-- Form Ubah Data --}}
         <form action="{{ url('lihat-pinjam-ruangan-admin/' . $pinjamRuangan->id) }}" method="POST">
             @method('PUT')
             @csrf
-
             <div class="d-flex justify-content-around">
                 <div class="p-5 bg-body rounded shadow-sm">
-
                     <h3 align=center>IDENTITAS PEMINJAM</h3>
                     <hr>
                     <div class="mb-3 row">
@@ -97,7 +86,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
@@ -106,7 +94,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
@@ -115,7 +102,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="no_hp" class="col-sm-3 col-form-label">No HP</label>
                         <div class="col-sm-9">
@@ -124,10 +110,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
                 <div class="p-5 bg-body rounded shadow-sm">
                     <h3 align=center>IDENTITAS RUANGAN</h3>
                     <hr>
@@ -145,7 +128,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="tgl_pinjam" class="col-sm-5 col-form-label">Tgl Pinjam</label>
                         <div class="col-sm-7">
@@ -162,7 +144,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="alasan" class=" col-form-label">Alasan</label>
                         <div class="border form-control">
@@ -175,7 +156,6 @@
                             {{ $pinjamRuangan->surat_peminjaman }}
                         </div>
                     </div>
-
                 </div>
                 <div class="p-5 bg-body rounded shadow-sm">
                     <h3 align=center>STATUS PEMINJMAN</h3>
@@ -185,8 +165,7 @@
                         <div>
                             @if ($pinjamRuangan->surat_peminjaman)
                                 <a class="btn btn-warning"
-                                    href="{{ asset('storage/' . $pinjamRuangan->surat_peminjaman) }}"
-                                    target="_blank">Lihat
+                                    href="{{ asset('storage/' . $pinjamRuangan->surat_peminjaman) }}" target="_blank">Lihat
                                     Surat
                                     Peminjaman</a>
                             @else
@@ -211,7 +190,6 @@
                                     Ditolak
                                 </option>
                             </select>
-
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -229,7 +207,6 @@
                     </div>
                 </div>
             </div>
-
     </div>
     </div>
     </div>

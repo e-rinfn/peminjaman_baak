@@ -1,17 +1,11 @@
 @extends('admin.layoutAdmin.template')
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+{{-- Judul Halaman --}}
+@section('title')
+    <title>P BAAK | Laporan Peminjaman Ruangan</title>
 @endsection
 
-
-{{-- sidebar --}}
+{{-- Sidebar --}}
 @section('sidenav')
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -56,32 +50,50 @@
 
 
 
-{{-- konten admin --}}
+{{-- Konten Admin --}}
 @section('konten')
     <main>
-
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Admin : <i> {{ Auth::user()->name }}</i></h1>
+            <h1 class="mt-4">Selamat Datang : {{ Auth::user()->name }}</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item active">Laporan</li>
             </ol>
-            {{-- pesan berhasil menambah data barang --}}
-
             <hr>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-between">
+                <form action="{{ url('filter-by-date-ruangan') }}" method="GET" class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="start_date">Tanggal Awal <i>(Bulan/Tanggal/Tahun)</i></label>
+                            <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}"
+                                required>
+                        </div>
+                        <div class="col">
+                            <label for="end_date">Tanggal Akhir <i>(Bulan/Tanggal/Tahun)</i></label>
+                            <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}"
+                                required>
+                        </div>
+                        <div class="col d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary me-2">Filter</button>
+                            <a href="{{ url('reset-filter-ruangan') }}" class="btn btn-secondary">Reset</a>
+                        </div>
+                    </div>
+                </form>
                 <div class="mb-3 p-3">
-                    <a href="pinjam-barang"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
-                            Barang</button></a>
-                </div>
-                <div class="mb-3 p-3">
-                    <a href="pinjam-ruangan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
-                            Ruangan</button></a>
+                    <div class="mt-2">
+                        <a href="laporan"><button type="submit" class="btn btn-block btn-primary">Laporan Pinjam
+                                Barang</button></a>
+                    </div>
+                    <div class="mt-2">
+                        <a href="laporanRuangan"><button type="submit" class="btn btn-block btn-secondary">Laporan Pinjam
+                                Ruangan</button></a>
+                    </div>
                 </div>
             </div>
 
+            {{-- Tabel Laporan Peminjaman Ruangan --}}
             <div class="card mb-4">
                 <div class="card-header">
-                    <h3 align=center>Laporan Peminjaman Barang</h3>
+                    <h3 align=center>Laporan Peminjaman Ruangan</h3>
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -89,7 +101,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Organisasi</th>
-                                <th>Nama Barang</th>
+                                <th>Nama Ruangan</th>
                                 <th>Nama Peminjam</th>
                                 <th>Tgl Pinjam</th>
                                 <th>Tgl Kembali</th>
@@ -98,19 +110,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($Ruangan as $item)
+                            @foreach ($pinjamRuangan as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->organisasi }}</td>
                                     <td>
                                         @php
-                                            $values = json_decode($item->nama_barang);
+                                            $values = json_decode($item->nama_ruangan);
                                             sort($values);
                                         @endphp
                                         @foreach ($values as $value)
                                             <span>{{ $value }}</span>
                                             @if (!$loop->last)
-                                                <span><br></span>
+                                                <span>,<br></span>
                                             @endif
                                         @endforeach
                                     </td>
@@ -139,8 +151,6 @@
             </div>
         </div>
         </div>
-
     </main>
-    {{-- main admin end --}}
     </div>
 @endsection

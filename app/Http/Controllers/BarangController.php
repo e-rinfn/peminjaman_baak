@@ -110,7 +110,7 @@ class BarangController extends Controller
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
-            'gambar' => $request->file('gambar')->store('images'),
+            // 'gambar' => $request->file('gambar')->store('images'),
         ];
         Barang::where('kode_barang', $id)->update($data);
         return redirect('/daftar-barang')->with('success', 'Data Barang Berhasil Di Edit');

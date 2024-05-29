@@ -1,17 +1,11 @@
 @extends('admin.layoutAdmin.template')
 
-
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+{{-- Judul Halmaan --}}
+@section('title')
+    <title>P BAAK | Pinjam Barang</title>
 @endsection
 
-{{-- sidebar --}}
+{{-- Sidebar --}}
 @section('sidenav')
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -55,7 +49,6 @@
 @endsection
 
 
-
 @section('konten')
     <div class="container-fluid px-4">
 
@@ -71,14 +64,12 @@
             </div>
         @endif
 
-
+        {{-- Form Ubah Data --}}
         <form action="{{ url('lihat-pinjam-barang-admin/' . $pinjamBarang->id) }}" method="POST">
             @method('PUT')
             @csrf
-
             <div class="d-flex justify-content-around">
                 <div class="p-5 bg-body rounded shadow-sm">
-
                     <h3 align=center>IDENTITAS PEMINJAM</h3>
                     <hr>
                     <div class="mb-3 row">
@@ -97,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
@@ -106,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
@@ -115,7 +104,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="no_hp" class="col-sm-3 col-form-label">No HP</label>
                         <div class="col-sm-9">
@@ -124,10 +112,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
                 <div class="p-5 bg-body rounded shadow-sm">
                     <h3 align=center>IDENTITAS BARANG</h3>
                     <hr>
@@ -145,7 +130,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="tgl_pinjam" class="col-sm-5 col-form-label">Tgl Pinjam</label>
                         <div class="col-sm-7">
@@ -162,7 +146,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="alasan" class=" col-form-label">Alasan</label>
                         <div class="border form-control">
@@ -183,7 +166,6 @@
                             {{ $pinjamBarang->surat_peminjaman }}
                         </div>
                     </div>
-
                 </div>
                 <div class="p-5 bg-body rounded shadow-sm">
                     <h3 align=center>STATUS PEMINJMAN</h3>
@@ -217,7 +199,6 @@
                                 <option value="Ditolak" {{ $pinjamBarang->status == 'Ditolak' ? 'selected' : '' }}>Ditolak
                                 </option>
                             </select>
-
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -235,7 +216,6 @@
                     </div>
                 </div>
             </div>
-
     </div>
     </div>
     </div>

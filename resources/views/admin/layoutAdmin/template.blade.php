@@ -14,7 +14,15 @@
 </head>
 
 <body class="sb-nav-fixed">
-    @yield('topNav')
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
+        <!-- Navbar Brand-->
+        <img class="p-2" src="https://upload.wikimedia.org/wikipedia/id/6/61/Unper.png" height="50"
+            alt="">
+        <a class="navbar-brand">PINJAM BAAK</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+    </nav>
 
     <div id="layoutSidenav">
         @yield('sidenav')

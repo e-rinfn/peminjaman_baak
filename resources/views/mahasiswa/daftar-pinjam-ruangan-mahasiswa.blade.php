@@ -45,12 +45,6 @@
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
                     </a>
-
-                    <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="{{ url('akun') }}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                        Kelola Akun
-                    </a>
                     <div class="d-flex justify-content-center mt-5">
                         <form onsubmit="return confirm('Apakah anda yakin untuk keluar?')" action="/logout" method="post">
                             @csrf

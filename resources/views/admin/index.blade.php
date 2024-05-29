@@ -1,15 +1,8 @@
 @extends('admin.layoutAdmin.template')
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+@section('title')
+    <title>P BAAK | Dashboard</title>
 @endsection
-
 
 {{-- sidebar --}}
 @section('sidenav')
@@ -18,7 +11,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
-                    <a class="nav-link active bg-primary" href="#">
+                    <a class="nav-link active bg-primary" href="{{ url('/admin') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Dashboard
                     </a>
@@ -61,10 +54,11 @@
     <main>
 
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Selamat Datang Admin : <i> {{ Auth::user()->name }}</i></h1>
+            <h1 class="mt-4">Selamat Datang Admin : {{ Auth::user()->name }}</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
+            <hr>
             {{-- pesan berhasil menambah data barang --}}
             @if (Session::has('success'))
                 <div class="alert alert-success">

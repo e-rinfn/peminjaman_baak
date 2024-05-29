@@ -1,13 +1,7 @@
 @extends('admin.layoutAdmin.template')
 
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-    </nav>
+@section('title')
+    <title>P BAAK | Pinjam Ruangan</title>
 @endsection
 
 
@@ -18,7 +12,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
-                    <a class="nav-link active bg-primary" href="#">
+                    <a class="nav-link active bg-primary" href="{{ url('/admin') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Dashboard
                     </a>

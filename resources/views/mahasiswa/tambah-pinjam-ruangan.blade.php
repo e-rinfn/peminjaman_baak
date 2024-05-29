@@ -5,13 +5,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-
-@section('topNav')
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">PINJAM BAAK</a>
-        <!-- Sidebar Toggle-->
-    </nav>
+@section('title')
+    <title>P BAAK | Tambah Pinjam Ruangan</title>
 @endsection
 
 {{-- sidebar --}}
@@ -44,12 +39,6 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
                                 class="fa-solid fa-handshake"></i></div>
                         Pinjam Ruangan
-                    </a>
-
-                    <div class="sb-sidenav-menu-heading">Akun</div>
-                    <a class="nav-link" href="{{ url('akun') }}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                        Kelola Akun
                     </a>
                     <div class="d-flex justify-content-center mt-5">
                         <form onsubmit="return confirm('Apakah anda yakin untuk keluar?')" action="/logout" method="post">

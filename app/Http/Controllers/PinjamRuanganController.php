@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\PinjamRuangan;
 use App\Http\Controllers\Controller;
@@ -95,6 +96,34 @@ class PinjamRuanganController extends Controller
     {
         $data = PinjamRuangan::orderBy("id", "desc")->get();
         return view('admin.pinjam-ruangan')->with('pinjamRuangan', $data);
+    }
+
+    // Laporan Pinjam Ruangan
+    public function laporanPinjamRuangan()
+    {
+        $data = PinjamRuangan::orderBy("id", "desc")->get();
+        return view('admin.laporan-ruangan')->with('pinjamRuangan', $data);
+    }
+
+    public function filterByDate(Request $request)
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        $pinjamRuangan = PinjamRuangan::whereBetween('tgl_pinjam', [$start_date, $end_date])->get();
+
+        // Ubah format tanggal sebelum mengirimkan ke view
+        $start_date = Carbon::createFromFormat('Y-m-d', $start_date)->format('d/m/Y');
+        $end_date = Carbon::createFromFormat('Y-m-d', $end_date)->format('d/m/Y');
+
+        return view('admin.laporan-ruangan', compact('pinjamRuangan'));
+    }
+
+    public function resetFilter()
+    {
+        $pinjamRuangan = PinjamRuangan::all();
+
+        return view('admin.laporan-ruangan', compact('pinjamRuangan'));
     }
 
     /**

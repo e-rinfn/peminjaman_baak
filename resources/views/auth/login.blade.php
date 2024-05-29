@@ -5,7 +5,7 @@
 
         <div class="card card-header" style="width: 25rem;">
 
-            <img class="pt-2" src="https://unper.ac.id/wp-content/uploads/2022/12/Logo-UNPER-Abbr.png" alt="">
+            <img class="p-3" src="https://unper.ac.id/wp-content/uploads/2022/12/Logo-UNPER-Abbr.png" alt="">
             <hr>
             <div class="p-3 ">
                 <h3> SISTEM INFORMASI <br>

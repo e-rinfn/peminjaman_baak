@@ -46,8 +46,14 @@ class PinjamRuanganController extends Controller
 
         ], [
             'nama_ruangan.required' => 'Nama Ruangan Wajib Diisi',
+            'nim.required' => 'NIM Wajib Diisi',
             'nama.required' => 'Nama Peminjam Wajib Diisi',
+            'email.required' => 'email Wajib Diisi',
             'no_hp.required' => 'Nomor HP Wajib Diisi',
+            'tgl_pinjam.required' => 'Tanggal Peminjaman Wajib Diisi',
+            'tgl_kembali.required' => 'Tanggal Pengembalian Wajib Diisi',
+            'alasan.required' => 'Alasan Peminjaman Wajib Diisi',
+            'surat_peminjaman.required' => 'Surat Peminjaman Wajib Diisi',
 
         ]);
 

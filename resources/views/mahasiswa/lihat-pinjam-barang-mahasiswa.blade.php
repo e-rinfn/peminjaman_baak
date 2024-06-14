@@ -62,13 +62,10 @@
                 </ul>
             </div>
         @endif
-        <div class="mb-3 ">
+        <div class="d-flex justify-content-end">
             <label for="nama_barang" class="col-sm-2 col-form-label"></label>
-            <div>
-                <button onclick="history.back()" class="btn btn-warning">Kembali</button>
-            </div>
+            <a href="{{ url('daftar-pinjam-barang-mahasiswa') }}" class="btn btn-warning">Kembali</a>
         </div>
-
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h3 align=center>STATUS PEMINJMAN</h3>
             <hr>
@@ -211,19 +208,29 @@
                 @method('PUT')
                 @csrf
                 <div class="mb-3 row">
-                    <label for="gambar_kembali" class="col-sm-2 col-form-label">Upload Gambar Bukti Barang Kembali <br>
-                        (upload hanya bisa 1 gambar)</label>
+                    <label for="gambar_kembali" class="col-sm-2 col-form-label">
+                        Upload Gambar Bukti Barang Kembali <br> (upload hanya bisa 1 gambar)
+                    </label>
                     <div class="col-sm-10">
                         <input type="file" class="form-control @error('gambar_kembali') is-invalid @enderror"
                             id="gambar_kembali" name="gambar_kembali">
                         <hr>
                         <div class="image-preview">
-                            <img class="border" src="{{ url('storage/images/tidak-ada.png') }}" alt="Default Image"
-                                id="gambar-preview" style="max-width: 100%; height: auto;">
+                            <img class="border" src="{{ url('') }}" alt="Gambar Preview" id="gambar-preview"
+                                style="max-width: 100%; height: auto;">
                         </div>
-                        <small class="form-text text-muted">Kosongkan jika tidak ada gambar baru.</small>
                     </div>
                 </div>
+
+                <script>
+                    document.getElementById('gambar_kembali').addEventListener('change', function(event) {
+                        const [file] = this.files;
+                        if (file) {
+                            const preview = document.getElementById('gambar-preview');
+                            preview.src = URL.createObjectURL(file);
+                        }
+                    });
+                </script>
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {

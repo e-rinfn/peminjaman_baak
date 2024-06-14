@@ -77,7 +77,6 @@
         <form action="{{ url('tambah-pinjam-barang') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-
                 <h3 align=center>IDENTITAS PEMINJAM</h3>
                 <hr>
                 <div class="mb-3 row">

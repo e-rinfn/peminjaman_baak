@@ -44,10 +44,15 @@ class PinjamBarangController extends Controller
             'surat_peminjaman' => 'required|mimes:pdf|max:4096',
 
         ], [
-            'nama_barang.required' => 'Nama Barang Wajib Diisi',
-            'nama.required' => 'Nama Wajib Diisi',
-            'organisasi.required' => 'Organisasi Wajib Diisi',
-            'surat_peminjaman' => 'Surat Peminjaman Wajib Diisi, Dan Harus berformat PDF'
+           'barang.required' => 'Nama Ruangan Wajib Diisi',
+            'nim.required' => 'NIM Wajib Diisi',
+            'nama.required' => 'Nama Peminjam Wajib Diisi',
+            'email.required' => 'email Wajib Diisi',
+            'no_hp.required' => 'Nomor HP Wajib Diisi',
+            'tgl_pinjam.required' => 'Tanggal Peminjaman Wajib Diisi',
+            'tgl_kembali.required' => 'Tanggal Pengembalian Wajib Diisi',
+            'alasan.required' => 'Alasan Peminjaman Wajib Diisi',
+            'surat_peminjaman.required' => 'Surat Peminjaman Wajib Diisi, dan Harus Berformat File PDF',
         ]);
 
         $data = [
@@ -168,7 +173,10 @@ class PinjamBarangController extends Controller
     public function updateMahasiswa(Request $request, string $id)
     {
         $request->validate([
-            'gambar_kembali' => ''
+            'gambar_kembali' => 'required|image', // Menambahkan validasi bahwa gambar harus diisi dan berupa file gambar
+        ], [
+            'gambar_kembali.required' => 'Gambar Kembali Wajib Diisi Jika Ingin Melakukan Perubahan, Jika Tidak, Silahkan Klik Tombol Kembali',
+            'gambar_kembali.image' => 'File yang diunggah harus berupa gambar',
         ]);
         $data = [
             'gambar_kembali' => $request->file('gambar_kembali')->store('images'),

@@ -99,7 +99,7 @@
                                     <th>Organisasi</th>
                                     <th>Nama</th>
                                     <th>Role ID</th>
-                                    <th>Nama Pengguna</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

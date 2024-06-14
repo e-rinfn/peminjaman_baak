@@ -102,16 +102,20 @@ class BarangController extends Controller
         $request->validate([
             'kode_barang' => 'required',
             'nama_barang' => 'required',
-
         ], [
             'kode_barang' => 'Kode Barang Wajib Diisi',
             'nama_barang' => 'Nama Barang Wajib Diisi',
         ]);
+
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
-            // 'gambar' => $request->file('gambar')->store('images'),
         ];
+
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')->store('images');
+        }
+
         Barang::where('kode_barang', $id)->update($data);
         return redirect('/daftar-barang')->with('success', 'Data Barang Berhasil Di Edit');
     }

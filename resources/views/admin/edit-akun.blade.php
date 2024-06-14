@@ -25,17 +25,6 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"> </i></div>
                         Daftar Ruangan
                     </a>
-                    {{-- <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Barang
-                    </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Ruangan
-                    </a> --}}
                     <div class="sb-sidenav-menu-heading">Laporan</div>
                     <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
@@ -112,14 +101,6 @@
                                 <option value="2" {{ $user->role_id == 2 ? 'selected' : '' }}>Pimpinan</option>
                                 <option value="3" {{ $user->role_id == 3 ? 'selected' : '' }}>Mahasiswa</option>
                             </select>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="password" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{ $user->email }}" name="email"
-                                id="email">
                         </div>
                     </div>
                     <hr>

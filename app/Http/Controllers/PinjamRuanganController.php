@@ -111,6 +111,12 @@ class PinjamRuanganController extends Controller
         return view('admin.laporan-ruangan')->with('pinjamRuangan', $data);
     }
 
+    public function cetakRuangan()
+    {
+        $data = PinjamRuangan::orderBy("id", "desc")->get();
+        return view('admin.cetak-ruangan')->with('pinjamRuangan', $data);
+    }
+
     public function filterByDate(Request $request)
     {
         $start_date = $request->input('start_date');

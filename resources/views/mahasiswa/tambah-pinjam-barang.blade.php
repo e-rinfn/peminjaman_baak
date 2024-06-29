@@ -16,7 +16,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading  ">Halaman Utama</div>
-                    <a class="nav-link " href="#">
+                    <a class="nav-link " href="{{ url('/mahasiswa') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                         Beranda Pengguna
                     </a>

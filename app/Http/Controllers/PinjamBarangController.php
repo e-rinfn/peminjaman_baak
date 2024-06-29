@@ -103,6 +103,12 @@ class PinjamBarangController extends Controller
         return view('admin.pinjam-barang')->with('pinjamBarang', $data);
     }
 
+    public function cetakBarang()
+    {
+        $data = PinjamBarang::orderBy("id", "desc")->get();
+        return view('admin.cetak-barang')->with('pinjamBarang', $data);
+    }
+
     // Laporan Pinjam Barang
     public function laporanPinjamBarang()
     {
@@ -175,7 +181,7 @@ class PinjamBarangController extends Controller
         $request->validate([
             'gambar_kembali' => 'required|image', // Menambahkan validasi bahwa gambar harus diisi dan berupa file gambar
         ], [
-            'gambar_kembali.required' => 'Gambar Kembali Wajib Diisi Jika Ingin Melakukan Perubahan, Jika Tidak, Silahkan Klik Tombol Kembali',
+            'gambar_kembali.required' => 'Gambar Kembali Wajib Diisi Jika Ingin Melakukan Perubahan, Jika Tidak Silahkan Klik Tombol Kembali',
             'gambar_kembali.image' => 'File yang diunggah harus berupa gambar',
         ]);
         $data = [

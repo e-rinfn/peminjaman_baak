@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p>CATATAN : Kosongkan password jika tidak melakukan perubahan.</p>
+                    <p>CATATAN : <span style="color: red;">Kosongkan password jika tidak melakukan perubahan.</span></p>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label" for="password">Password</label>
                         <div class="col-sm-10">
@@ -127,10 +127,6 @@
                     </div>
                 </div>
             </form>
-
-
-
-
         </div>
     </main>
 @endsection

@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () { // jika ro
     Route::get('/laporan', [AdminController::class, 'laporanPeminjaman']);
     Route::get('/laporan', [PinjamBarangController::class, 'laporanPinjamBarang']);
 
+    Route::get('/cetak-barang', [PinjamBarangController::class, 'cetakBarang']);
+
+
     // Filter Halaman Laporan Peminjaman Barang
     Route::get('/filter-by-date', [PinjamBarangController::class, 'filterByDate'])->name('filter.by.date');
     Route::get('/reset-filter', [PinjamBarangController::class, 'resetFilter'])->name('reset.filter');
@@ -67,6 +70,8 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () { // jika ro
     // Laporan ruangan
     Route::get('/laporan-ruangan', [AdminController::class, 'laporanPeminjamanRuangan']);
     Route::get('/laporan-ruangan', [PinjamRuanganController::class, 'laporanPinjamRuangan']);
+
+    Route::get('/cetak-ruangan', [PinjamRuanganController::class, 'cetakRuangan']);
 
     // Filter Halaman Laporan Peminjaman Barang
     Route::get('/filter-by-date-ruangan', [PinjamRuanganController::class, 'filterByDate']);

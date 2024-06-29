@@ -4,6 +4,20 @@
     <title>P BAAK | Daftar Barang</title>
 @endsection
 
+<style>
+    .text-center {
+        text-align: center;
+        /* Centers the contents horizontally */
+    }
+
+    .centered-image {
+        display: block;
+        /* Removes default inline behavior of img */
+        margin-left: auto;
+        margin-right: auto;
+        /* Centers the block element */
+    }
+</style>
 
 {{-- sidebar --}}
 @section('sidenav')
@@ -109,9 +123,10 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->kode_barang }}</td>
                                         <td>{{ $item->nama_barang }}</td>
-                                        <td><a href="{{ asset('storage/' . $item->gambar) }}">
-                                                <img class="border p-2 d-flex justify-center"
-                                                    src="{{ asset('storage/' . $item->gambar) }}"
+                                        <td class="text-center">
+                                            <a href="{{ asset('storage/images/' . $item->gambar) }}">
+                                                <img class="border p-2 d-flex justify-center centered-image"
+                                                    src="{{ asset('storage/images/' . $item->gambar) }}"
                                                     alt="{{ $item->nama_barang }}" width="200">
                                             </a>
                                         </td>

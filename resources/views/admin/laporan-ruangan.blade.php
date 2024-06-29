@@ -90,6 +90,12 @@
                 </div>
             </div>
 
+            <hr>
+            <div class="p-3">
+                <a href="cetak-ruangan" target="_blank"><button class="btn btn-block btn-warning">Cetak Laporan Pinjam
+                        Ruangan</button></a>
+            </div>
+
             {{-- Tabel Laporan Peminjaman Ruangan --}}
             <div class="card mb-4">
                 <div class="card-header">

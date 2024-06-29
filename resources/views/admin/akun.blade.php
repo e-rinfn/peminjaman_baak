@@ -25,17 +25,6 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-house"> </i></div>
                         Daftar Ruangan
                     </a>
-                    {{-- <div class="sb-sidenav-menu-heading">Daftar Peminjaman</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Barang
-                    </a>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i> | <i
-                                class="fa-solid fa-handshake"></i></div>
-                        Pinjam Ruangan
-                    </a> --}}
                     <div class="sb-sidenav-menu-heading">Laporan</div>
                     <a class="nav-link" href="{{ url('laporan') }}">
                         <div class="sb-nav-link-icon"><i class="fa-regular fa-clipboard"></i></div>
@@ -125,7 +114,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -157,12 +145,17 @@
                             </div>
                         </div>
                         <div class="mb-2 row">
-                            <label for="role_id" class="col-form-label">Role ID</label>
+                            <label for="role_id" class="col-form-label">Role</label>
                             <div>
-                                <input type="text" class="form-control" value="{{ Session::get('role_id') }}"
-                                    name="role_id" id="role_id">
+                                <select class="form-control" name="role_id" id="role_id">
+                                    <option value="3" {{ Session::get('role_id') == 3 ? 'selected' : '' }}>Mahasiswa
+                                    </option>
+                                    <option value="1" {{ Session::get('role_id') == 1 ? 'selected' : '' }}>Admin
+                                    </option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="mb-2 row">
                             <label for="password" class="col-form-label">Password</label>
                             <div>
@@ -185,7 +178,6 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </main>

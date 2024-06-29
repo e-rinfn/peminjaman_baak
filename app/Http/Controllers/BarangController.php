@@ -48,34 +48,44 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        // Menyimpan data input ke dalam session sementara kecuali file gambar
         Session::flash('kode_barang', $request->kode_barang);
         Session::flash('nama_barang', $request->nama_barang);
-        Session::flash('gambar', $request->nama_barang);
-
-
-
+    
+        // Validasi input
         $request->validate([
-            'kode_barang' => 'required|unique:barang',
+            'kode_barang' => 'required|unique:barang,kode_barang',
             'nama_barang' => 'required',
-            'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
             'kode_barang.unique' => 'Kode Sudah Ada, Masukkan Lainnya',
             'kode_barang.required' => 'Kode Barang Wajib Diisi',
-            'nama_barang' => 'Nama Barang Wajib Diisi',
+            'nama_barang.required' => 'Nama Barang Wajib Diisi',
         ]);
-
-
+    
+        // Menyimpan file gambar jika ada
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $gambar_name = $request->kode_barang . '.' . $gambar->getClientOriginalExtension();
+            $gambar->storeAs('/images', $gambar_name); // Simpan di storage public
+        } else {
+            $gambar_name = null;
+        }
+    
+        // Membuat data array untuk disimpan ke database
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
-            'gambar' => $request->file('gambar')->store('images'),
-
+            'gambar' => $gambar_name,
         ];
+    
+        // Menyimpan data ke tabel barang
         Barang::create($data);
+    
+        // Redirect ke halaman daftar barang dengan pesan sukses
         return redirect('daftar-barang')->with('success', 'Data Barang Berhasil Ditambah');
     }
+        
 
     /**
      * Display the specified resource.
@@ -97,6 +107,9 @@ class BarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -113,7 +126,10 @@ class BarangController extends Controller
         ];
 
         if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('images');
+            $gambar = $request->file('gambar');
+            $gambar_name = $request->kode_barang . '.' . $gambar->getClientOriginalExtension();
+            $gambar->storeAs('images', $gambar_name);
+            $data['gambar'] = $gambar_name;
         }
 
         Barang::where('kode_barang', $id)->update($data);

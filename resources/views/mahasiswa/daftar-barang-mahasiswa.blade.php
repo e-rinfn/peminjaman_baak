@@ -80,10 +80,10 @@
                             @foreach ($barang as $item)
                                 <tr>
                                     <td>{{ $item->nama_barang }}</td>
-                                    <td><a href="{{ asset('storage/' . $item->gambar) }}">
+                                    <td><a href="{{ asset('storage/images/' . $item->gambar) }}">
                                             <img class="border p-2 d-flex justify-center"
-                                                src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_barang }}"
-                                                width="200">
+                                                src="{{ asset('storage/images/' . $item->gambar) }}"
+                                                alt="{{ $item->nama_barang }}" width="200">
                                         </a>
                                     </td>
 

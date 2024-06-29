@@ -77,6 +77,7 @@
                         </div>
                     </div>
                 </form>
+
                 <div class="mb-3 p-3">
                     <div class="mt-2">
                         <a href="laporan"><button type="submit" class="btn btn-block btn-secondary">Laporan Pinjam
@@ -87,6 +88,11 @@
                                 Ruangan</button></a>
                     </div>
                 </div>
+            </div>
+            <hr>
+            <div class="p-3">
+                <a href="cetak-barang" target="_blank"><button class="btn btn-block btn-warning">Cetak Laporan Pinjam
+                        Barang</button></a>
             </div>
 
             {{-- Tabel Laoporan Peminjaman --}}
